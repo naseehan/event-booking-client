@@ -1,0 +1,25 @@
+.desk-navbar nav .logo img{
+    height: 50px;
+}
+.desk-navbar nav{
+    display: flex;
+    justify-content: space-between;
+}
+.desk-navbar nav ul{
+    display: flex;
+    list-style: none;
+    gap: 3rem;
+}
+.desk-navbar nav ul li:focus{
+    color: #d9072a;
+}
+.desk-navbar nav ul li a{
+    text-decoration: none;
+    padding: 20px 0 18px 0;
+}
+.desk-navbar nav ul li a:hover{
+    border-bottom: solid 2px #d9072a;
+}
+.desk-navbar nav ul li a:focus{
+    border-bottom: solid 2px #d9072a;
+}
