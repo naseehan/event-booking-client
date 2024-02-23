@@ -17,24 +17,24 @@ const Events = [{
     place: "Kozhikode",
     img: event2
 },
-{
-    name: "Kenny G",
-    price: "4200₹-7800₹",
-    place: "TVM",
-    img: event3
-},
-{
-    name: "Ballet",
-    price: "800₹-1000₹",
-    place: "Kollam",
-    img: event4
-},
-{
-    name: "IT Conference",
-    price: "2800₹-3000₹",
-    place: "Banglore",
-    img: event5
-},
+// {
+//     name: "Kenny G",
+//     price: "4200₹-7800₹",
+//     place: "TVM",
+//     img: event3
+// },
+// {
+//     name: "Ballet",
+//     price: "800₹-1000₹",
+//     place: "Kollam",
+//     img: event4
+// },
+// {
+//     name: "IT Conference",
+//     price: "2800₹-3000₹",
+//     place: "Banglore",
+//     img: event5
+// },
 ]
 
 export default Events;

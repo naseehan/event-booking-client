@@ -1,0 +1,136 @@
+.event-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin: 3rem 0;
+}
+.event-container .all-events h5,
+.event-container .all-events p,
+.event-container .all-events i {
+  color: #fff;
+}
+.all-events {
+  display: flex;
+  height: 18rem;
+}
+.event-details {
+  display: grid;
+  justify-content: center;
+  background-color: #c683d7;
+  padding: 2rem;
+  gap: 1rem;
+}
+.first-child {
+  display: flex;
+  gap: 0.6rem;
+}
+/* Target the first child div and apply styles to h5 and p within it */
+.first-child div h5,
+.first-child div p {
+  font-size: 12px;
+  font-family: "Lato", sans-serif;
+}
+
+.event-names {
+  display: grid;
+  gap: 0.5rem;
+  background-image: url(../../assets//events/bg.jpg);
+  width: 100%;
+  text-align: center;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+.event-names i {
+  align-self: center;
+}
+.event-names h1,
+.event-names p {
+  height: 0;
+  margin: 0;
+  color: #fff;
+}
+.event-names h1 {
+  font-family: "Noto Sans Georgian";
+  font-size: 71px;
+}
+.event-names p {
+  font-size: 21px;
+}
+
+/* loader styles */
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.bar {
+  display: inline-block;
+  width: 3px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 10px;
+  animation: scale-up4 40s linear infinite;
+}
+
+.bar:nth-child(2) {
+  height: 35px;
+  margin: 0 5px;
+  animation-delay: 0.25s;
+}
+
+.bar:nth-child(3) {
+  animation-delay: 0.5s;
+}
+
+@keyframes scale-up4 {
+  /* 20% {
+    background-color: #ffff;
+    transform: scaleY(1.5);
+  }
+
+  40% {
+    transform: scaleY(1);
+  } */
+
+  0% {
+    background-color: #ffff;
+    transform: scaleY(1.5);
+  }
+
+  50% {
+    background-color: #000;
+    transform: scaleY(1);
+  }
+
+  100% {
+    background-color: #ffff;
+    transform: scaleY(1.5);
+  }
+}
+
+/* mobile devices */
+
+@media only screen and (max-width: 768px) {
+  .all-events {
+    display: grid;
+  }
+  .event-container {
+    grid-template-columns: 1fr;
+  }
+  .event-details {
+    align-items: center;
+    padding: 0rem;
+    display: flex;
+    height: 6rem;
+  }
+  .event-names {
+    height: 12rem;
+  }
+  .event-names h1 {
+    font-size: 42px;
+  }
+}

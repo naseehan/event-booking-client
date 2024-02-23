@@ -1,0 +1,20 @@
+/* SignUp.css */
+.sign-up-container {
+    text-align: center;
+    width: 50%; /* Default width for larger screens */
+  }
+  .sign-up .error-message{
+    color: #e01414;
+  }
+  .sign-up .pass-input{
+    color: #e01414;
+  }
+  .sign-up .button-error{
+    opacity: 0.7;
+  }
+  @media (max-width: 768px) {
+    .sign-up-container {
+      width: 100% !important; /* Adjusting width for mobile devices */
+    }
+  }
+  

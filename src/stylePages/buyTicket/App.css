@@ -13,7 +13,6 @@
   font-weight: 400;
   font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Helvetica,
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  
 }
 .buy-ticket button,
 button::after {
@@ -116,5 +115,204 @@ button::after {
   100% {
     clip-path: var(--move1);
     transform: translate(0);
+  }
+}
+
+/* confirm */
+.confirm-content {
+  display: flex;
+  justify-content: space-between;
+}
+.confirm-ticket {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+  margin-top: 4rem;
+  gap: 2rem;
+}
+.confirm-ticket img {
+  max-width: 19rem;
+}
+.card-body {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+}
+.seat-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: fixed;
+  left: 40rem;
+  top: 16rem;
+}
+.seat-count ul {
+  display: flex;
+  gap: 1rem;
+}
+.seat-count ul li {
+  list-style: none;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  position: fixed;
+  display: none;
+}
+.active-window {
+  display: block;
+}
+
+/* confirm 2 */
+.confirm-div {
+  background-image: url("../../assets/home/event-bg.jpg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 40rem;
+}
+.confirm-overlay {
+  background-color: rgba(19, 16, 43, 0.72);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.event-heading{
+  display: flex;
+  color: #fff;
+  z-index: 3;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  top: 1rem;
+}
+.event-heading h1{
+  display: flex;
+  color: #fff;
+  z-index: 3;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  top: 14rem;
+}
+.ticket-booking {
+  background-color: #f4f4f4;
+  position: relative;
+  top: 23rem;
+  /* width: 78rem; */
+  /* left: 5rem; */
+  left: 7%;
+  margin-right: 14%;
+  display: flex;
+  justify-content: space-between;
+  padding: 6rem;
+  border-radius: 7px;
+}
+.common-booking{
+  display: grid;
+    gap: 1.5rem;
+}
+.common-booking i{
+  font-size: 40px;
+  color: #161631;
+  opacity: .2;
+}
+/* .ticket-booking .common-booking .span{
+  color: #000;
+} */
+
+
+/* button styles */
+.booking-price button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #183153;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: none;
+ }
+ 
+ .booking-price button ::after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #FFD401;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+ }
+ 
+ .booking-price button:hover ::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+ }
+ 
+ .booking-price button span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 18px 25px;
+  color: #fff;
+  font-size: 1.125em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+ }
+ 
+.booking-price  button:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+ }
+ 
+ @keyframes scaleUp {
+  0% {
+   transform: scale(1);
+  }
+ 
+  50% {
+   transform: scale(0.95);
+  }
+ 
+  100% {
+   transform: scale(1);
+  }
+ }
+ 
+ 
+/* for mobile */
+@media only screen and (max-width: 913px) {
+  .buy-ticket {
+    display: grid;
+    gap: 3rem;
+    text-align: center;
+  }
+  .confirm-div{
+    display: grid;
+    justify-content: center;
+  }
+  .ticket-booking {
+    display: grid;
+    width: 19.5rem;
+    left: 0rem;
+    justify-content: center;
+    gap: 4rem;
+    padding: 1rem;
+    text-align: center;
+  }.common-booking{
+    gap: 1rem;
   }
 }

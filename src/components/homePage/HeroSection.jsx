@@ -5,7 +5,7 @@ import SearchSection from './SearchSection'
 
 const HeroSection = () => {
   return (
-    <div className='container'>
+    // <div className='container'>
         <div className="hero">
             <div className="heading">
                 <p>ALL THE FUN STARTS HERE</p>
@@ -30,7 +30,7 @@ const HeroSection = () => {
                     </h1>
                     <h1>around you.</h1>
             </div>
-        </div>
+        {/* </div> */}
         <div className="search-section">
 
         </div>

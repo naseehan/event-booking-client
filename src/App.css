@@ -1,7 +1,16 @@
-.App{
-    padding: 1rem 3rem;
-    font-family: 'Roboto', sans-serif;
+.App {
+  padding: 1rem 3rem 0;
+  font-family: "Roboto", sans-serif;
 }
-body{
-    background-color: #ebf0fa;
+body {
+  background-color: #ebf0fa;
+}
+
+
+
+@media only screen and (max-width: 760px) {
+  .App {
+    min-width: 21rem;
+    padding: 1rem;
+  }
 }

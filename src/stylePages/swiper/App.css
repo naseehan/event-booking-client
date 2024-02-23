@@ -1,0 +1,39 @@
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-top: 5%;
+  text-align: center;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+.swiper-slide a{
+  cursor: grab;
+}
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  filter: brightness(72%);
+  position: relative;
+}
+.swiper-slide a h4 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  margin: 0;
+}
+
+@media (max-width: 928px) {
+  .swiper-slide a h4 {
+    margin-top: 145%;
+  }
+}

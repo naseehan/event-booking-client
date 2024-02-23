@@ -1,0 +1,465 @@
+footer {
+  margin-top: 8%;
+}
+.buy-ticket {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10rem;
+  align-items: center;
+  background-color: #f8f9fa;
+  padding: 3rem;
+  border-radius: 4px;
+}
+.buy-ticket h5 {
+  font-size: 32px;
+  color: #333339cc;
+  font-weight: 400;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.buy-ticket button,
+button::after {
+  padding: 10px 50px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  background-color: transparent;
+  position: relative;
+}
+
+.buy-ticket button::after {
+  --move1: inset(50% 50% 50% 50%);
+  --move2: inset(31% 0 40% 0);
+  --move3: inset(39% 0 15% 0);
+  --move4: inset(45% 0 40% 0);
+  --move5: inset(45% 0 6% 0);
+  --move6: inset(14% 0 61% 0);
+  clip-path: var(--move1);
+  content: "GLITCH";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+}
+
+.buy-ticket button:hover::after {
+  animation: glitch_4011 1s;
+  text-shadow: 10 10px 10px black;
+  animation-timing-function: steps(2, end);
+  text-shadow: -3px -3px 0px #1df2f0, 3px 3px 0px #e94be8;
+  background-color: transparent;
+  border: 3px solid rgb(0, 255, 213);
+}
+
+.buy-ticket button:hover {
+  text-shadow: -1px -1px 0px #1df2f0, 1px 1px 0px #e94be8;
+}
+
+.buy-ticket button:hover {
+  background-color: transparent;
+  border: 1px solid rgb(0, 255, 213);
+  box-shadow: 0px 10px 10px -10px rgb(0, 255, 213);
+}
+
+@keyframes glitch_4011 {
+  0% {
+    clip-path: var(--move1);
+    transform: translate(0px, -10px);
+  }
+
+  10% {
+    clip-path: var(--move2);
+    transform: translate(-10px, 10px);
+  }
+
+  20% {
+    clip-path: var(--move3);
+    transform: translate(10px, 0px);
+  }
+
+  30% {
+    clip-path: var(--move4);
+    transform: translate(-10px, 10px);
+  }
+
+  40% {
+    clip-path: var(--move5);
+    transform: translate(10px, -10px);
+  }
+
+  50% {
+    clip-path: var(--move6);
+    transform: translate(-10px, 10px);
+  }
+
+  60% {
+    clip-path: var(--move1);
+    transform: translate(10px, -10px);
+  }
+
+  70% {
+    clip-path: var(--move3);
+    transform: translate(-10px, 10px);
+  }
+
+  80% {
+    clip-path: var(--move2);
+    transform: translate(10px, -10px);
+  }
+
+  90% {
+    clip-path: var(--move4);
+    transform: translate(-10px, 10px);
+  }
+
+  100% {
+    clip-path: var(--move1);
+    transform: translate(0);
+  }
+}
+
+/* confirm */
+.confirm-content {
+  display: flex;
+  justify-content: space-between;
+}
+.confirm-ticket {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+  margin-top: 4rem;
+  gap: 2rem;
+}
+.confirm-ticket img {
+  max-width: 19rem;
+}
+.card-body {
+  display: grid;
+  gap: 1rem;
+  text-align: center;
+}
+.seat-selection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: fixed;
+  left: 40rem;
+  top: 16rem;
+}
+.seat-count ul {
+  display: flex;
+  gap: 1rem;
+}
+.seat-count ul li {
+  list-style: none;
+}
+.overlay {
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  position: fixed;
+  display: none;
+}
+.active-window {
+  display: block;
+}
+
+/* confirm 2 */
+.confirm-div {
+  background-image: url("../../assets/home/event-bg.jpg");
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  height: 40rem;
+  margin-bottom: 22%;
+}
+.confirm-overlay {
+  background-color: rgba(19, 16, 43, 0.72);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+.event-heading {
+  display: flex;
+  color: #fff;
+  z-index: 3;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  top: 9rem;
+}
+.event-heading h1 {
+  display: flex;
+  color: #fff;
+  z-index: 3;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  top: 7%;
+  font-size: 28px;
+  font-weight: 400;
+}
+.ticket-booking-1 {
+  background-color: #f4f4f4;
+  position: relative;
+  top: 18rem;
+  /* max-width: 78rem; */
+  /* left: 5rem; */
+  left: 6%;
+  margin-right: 12%;
+  justify-content: space-between;
+  padding: 6rem;
+  border-radius: 7px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+.common-booking {
+  display: grid;
+  gap: 1.5rem;
+}
+.common-booking i {
+  font-size: 40px;
+  color: #161631;
+  opacity: 0.2;
+}
+.other-events{
+  margin-top: 20%;
+  text-align: center;
+}
+
+/* button styles */
+.booking-price button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background: #183153;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: 0px 6px 24px 0px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: none;
+}
+
+.booking-price button ::after {
+  content: " ";
+  width: 0%;
+  height: 100%;
+  background: #ffd401;
+  position: absolute;
+  transition: all 0.4s ease-in-out;
+  right: 0;
+}
+
+.booking-price button:hover ::after {
+  right: auto;
+  left: 0;
+  width: 100%;
+}
+
+.booking-price button span {
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+  padding: 18px 25px;
+  color: #fff;
+  font-size: 1.125em;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  z-index: 20;
+  transition: all 0.3s ease-in-out;
+}
+
+.booking-price button:hover span {
+  color: #183153;
+  animation: scaleUp 0.3s ease-in-out;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cart-info {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.cart-name {
+  display: grid;
+}
+.cart-name h5 {
+  font-size: 28px;
+  font-weight: 400;
+}
+.cart-details {
+  display: flex;
+  color: #737373;
+  font-weight: 300;
+  align-items: center;
+  gap: 10px;
+}
+.cart-event-count {
+  display: flex;
+  gap: 0.8rem;
+  height: 3rem;
+}
+.cart-event-count input {
+  text-align: center;
+  border: none;
+  border-radius: 4px;
+  background-color: #eee;
+  width: 4rem;
+}
+.cart-event-count input:focus-visible {
+  border: none;
+}
+.cart-event-count button {
+  padding: 10px;
+  border-radius: 7px;
+  background-color: #d9072a;
+  color: #fff;
+}
+.cart-price {
+  display: grid;
+  justify-content: right;
+  border-top: 1px solid #000;
+  text-align: center;
+}
+.cart-price p:first-child {
+  color: #737373;
+  font-size: 16px;
+  font-weight: 100;
+}
+.cart-price p:nth-child(2) {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.place-order-btn{
+  align-self: center;
+}
+.place-order-btn .btn {
+  width: 8.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+ 
+ .place-order-btn .btn:hover {
+  color: black;
+ }
+ 
+ .place-order-btn .btn:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+ 
+ .place-order-btn .btn:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }
+
+/* for mobile */
+@media only screen and (max-width: 913px) {
+  .buy-ticket {
+    display: grid;
+    gap: 3rem;
+    text-align: center;
+  }
+  .confirm-div {
+    display: grid;
+    justify-content: center;
+    margin-bottom: 82%;
+  }
+  .ticket-booking {
+    display: grid;
+    width: 19.5rem;
+    left: 0rem;
+    justify-content: center;
+    gap: 4rem;
+    padding: 1rem;
+    text-align: center;
+  }
+  .common-booking {
+    gap: 1rem;
+  }
+  .event-heading h1 {
+    top: 0;
+  }
+  .ticket-booking-1 {
+    text-align: center;
+    padding: 12px;
+    /* left: 0; */
+    border-radius: 3px;
+    justify-content: center;
+  }
+  .cart-info{
+    justify-content: center;
+  }
+  .cart-price{
+    justify-content: center;
+    border: none;
+  }
+  .cart-details{
+    display: grid;
+  }
+  .other-events{
+    margin-top: 145%;
+  }
+}
+
+/* input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"] {
+      -webkit-appearance: none;
+      margin: 0;
+  } */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}

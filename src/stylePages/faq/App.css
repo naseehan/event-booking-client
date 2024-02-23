@@ -1,0 +1,61 @@
+.faq-section{
+    background-image: url(../../assets/home/brooklyn2.jpg);
+    background-position: 0 70%;
+    background-repeat: no-repeat;
+    background-size: auto;
+    padding: 10rem 0;
+}
+.headings-car {
+    margin: 0 auto 5rem;
+    max-width: 40rem;
+    text-align: center;
+}
+.answer{
+    transition: .4s ease;
+    overflow: hidden;
+    max-height: 0;
+    padding: 0 2rem;
+}
+.active-answer {
+    display: flex;
+    transition: .4s ease;
+    max-height: 29rem;
+    padding: 1rem 2rem;
+    color: #777;
+    line-height: 1.6;
+}
+.faq-questions{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.single-question {
+    width: 50rem;
+    background-color: #fff;
+    box-shadow: 0 10px 15px 0 rgba(0,0,0,.1);
+}
+.question{
+    transition: .15s ease;
+    cursor: pointer;
+    padding: 1.3rem 3rem;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+    justify-content: space-between;
+}
+.question p{
+    margin: 0;
+}
+.active-question {
+    background-color: #ff4d30;
+    box-shadow: 0 10px 15px 0 rgba(255,83,48,.35);
+    color: #fff;
+}
+@media only screen and (max-width: 860px){
+    .single-question {
+        width: auto;
+    }
+}

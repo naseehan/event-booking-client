@@ -1,0 +1,96 @@
+.create-container {
+  display: grid;
+  justify-content: center;
+  border-radius: 4px;
+  opacity: 1 !important;
+  padding: 2rem;
+  text-align: center;
+  background-image: url('../../assets/events/26029.jpg');
+  position: relative;
+  z-index: 1;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+}
+.create-container .active-task-details form input::placeholder {
+  color: #000;
+}
+.create-container form {
+  display: grid;
+  text-align: left;
+  gap: 1rem;
+}
+.create-container label {
+  font-weight: 500;
+}
+.create-container input {
+  background-color: #000;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 0.4rem;
+  width: 20rem;
+}
+.create-container button {
+  background-color: #484c7f;
+  border: 1px solid #484c7f;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.6rem;
+}
+.create-container .success-message {
+  background-color: green;
+  color: #fff;
+  padding: 0.3rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+.create-container .success-message p {
+  margin-bottom: 0;
+}
+.create-container select,
+textarea {
+  background-color: #000;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 0.4rem;
+}
+.create-container .active-task-details {
+  padding: 2rem;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;
+}
+.create-container .active-task-details form .date-error{
+  color: #e01414;
+}
+.create-container .not-allowed{
+  cursor: not-allowed;
+  opacity: 0.7;
+} 
+.page-overlay{
+  background-color: rgba(19, 16, 43, 0.72);
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+@media (max-width: 786px) {
+  .create-container {
+    padding: 1rem;
+  }
+  .create-container input {
+    width: auto;
+  }
+}
+
+
+
+
+
+

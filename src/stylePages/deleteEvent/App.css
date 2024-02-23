@@ -1,0 +1,117 @@
+.delete-container{
+    margin-top: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+.delete-container p{
+    color: #fff;
+}
+.delete-container  span{
+    color: #fff;
+}
+
+
+@media only screen and (max-width:780px){
+    .delete-container{
+        grid-template-columns: 1fr;
+    }
+}
+
+.custom-dialog {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    padding: 4px;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background-color: #2d2d2d; /* Change this to your desired background color */
+    border: 1px solid #2d2d2d; /* Change this to your desired border color */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    font-family: sans-serif;
+  }
+
+  .custom-dialog-inner {
+    text-align: center;
+    padding: 3px;
+    flex: 1;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .custom-dialog-inner svg {
+    width: 12px;
+    height: 12px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    color: #808080; /* Change this to your desired icon color */
+    margin: auto;
+  }
+
+  .custom-dialog-inner h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d1d1d1; /* Change this to your desired text color */
+    padding-top: 16px;
+  }
+
+  .custom-dialog-inner p {
+    font-size: 0.875rem; /* text-sm */
+color: #a0aec0; /* text-gray-500 */
+padding-left: 8px;
+  }
+
+  .custom-buttons {
+    padding: 2px;
+    margin-top: 8px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .custom-buttons button {
+    margin-bottom: 8px;
+    background-color: #4a5568; /* Change this to your desired button color */
+    padding: 8px 20px;
+    font-size: 0.875rem;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-weight: medium;
+    letter-spacing: 0.025em;
+    border: 2px solid #2d3748; /* Change this to your desired border color */
+    color: #a0aec0; /* Change this to your desired text color */
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .custom-buttons button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #2d3748; /* Change this to your desired hover color */
+    border-color: #1a202c; /* Change this to your desired hover border color */
+  }
+
+  .custom-buttons .delete {
+    background-color: #68d391; /* bg-green-400 */
+    padding: 10px 27px; /* px-5 */
+    margin-left: 4px; /* ml-4 */
+    margin-right: 0; /* No margin-right */
+    font-size: 0.875rem; /* text-sm */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* shadow-sm */
+    font-weight: 500; /* font-medium */
+    letter-spacing: 0.025em; /* tracking-wider */
+    border-width: 2px; /* border-2 */
+    border-style: solid; /* border-2 */
+    border-color: #48bb78; /* border-green-300 */
+    color: #fff; /* text-white */
+    border-radius: 9999px; /* rounded-full */
+    transition: all 0.3s ease-in-out;
+  }
+  .custom-buttons .delete:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* hover:shadow-lg */
+    background-color: #4fd1a9; /* hover:bg-green-500 */
+    border-color: #68d391;
+  }
