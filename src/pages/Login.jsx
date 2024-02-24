@@ -144,9 +144,12 @@ const Login = ({ setAdminEmail }) => {
                 <div>
                   <p className="mb-0">
                     Don't have an account?
-                    <a href="/signup" class="text-white-50 fw-bold">
+                    {/* <a href="/signup" className="text-white-50 fw-bold">
                       Sign Up
-                    </a>
+                    </a> */}
+                    <Link to="/signup" className="text-white-50 fw-bold">
+                Sign up
+              </Link>
                   </p>
                 </div>
               </MDBCardBody>
