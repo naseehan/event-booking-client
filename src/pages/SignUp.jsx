@@ -124,7 +124,7 @@ const SignUp = () => {
           <div className="text-center">
             <Link to="/login">
             <p>
-              Already have an account? <a href="#!">Login</a>
+              Already have an account ? <a href="#!">Login</a>
             </p>
             </Link>
             {/* <p>or sign up with:</p> */}

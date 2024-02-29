@@ -6,9 +6,32 @@ import axios from "axios";
 const Cart = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [noPage, setNoPage] = useState(false)
+  const [token, setToken] = useState();
+
+  useEffect(() =>{
+    const storedToken = localStorage.getItem("userstokentoken")
+    setToken(storedToken)
+  }, []);
+
+
+// useEffect(() => {
+//   if (location.state === null) {
+//     setNoPage(true);
+//   } else {
+//     setNoPage(false);
+//   }
+// }, [location.state]);
+
+// Check if location.state exists before accessing its properties
+// if (noPage || !location.state) {
+//   return <div>Please login first</div>;
+// }
+
+
   const { name, category, place, price, date, time, venue, description } = location.state;
   const [count, setCount] = useState(1);
-
+ 
   const dateString = date;
 
   // Convert the string to a Date object
@@ -28,7 +51,7 @@ const Cart = () => {
   // when user clicks buy
   const handleClick = async (e) => {
     e.preventDefault();
-
+if(token){
     try{
       const userId = localStorage.getItem("userId");
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/cart`,{
@@ -43,13 +66,17 @@ const Cart = () => {
     } catch (error){
       console.error(error);
     }
-
+  }else{
+    navigate("/login");
+  }
   };
 
  
 
   return (
     <div className="confirm-div">
+      {noPage ? <div>Please login first</div>:(
+        <>
       <div className="confirm-overlay"></div>
       <div className="event-heading">
         <h4>Complete Your Purchase</h4>
@@ -61,11 +88,11 @@ const Cart = () => {
           <div className="cart-name">
             <h5>{name}</h5>
             <div className="cart-details">
-              <i class="fa-solid fa-location-dot"></i>
+              <i className="fa-solid fa-location-dot"></i>
               <span>{venue}</span>
-              <i class="fa-solid fa-calendar-days"></i>
+              <i className="fa-solid fa-calendar-days"></i>
               <span>{date}</span>
-              <i class="fa-solid fa-clock"></i>
+              <i className="fa-solid fa-clock"></i>
               <span>{time}</span>
             </div>
           </div>
@@ -97,11 +124,11 @@ const Cart = () => {
         </div>
 
         <div className="place-order-btn">
-          <button class="btn" onClick={(e)=>{handleClick( e,name,category,place,price,date,time,venue,description)}}> Place Order </button>
+          <button className="btn" onClick={(e)=>{handleClick( e,name,category,place,price,date,time,venue,description)}}> Place Order </button>
         </div>
       </div>
-
-
+      </>
+)}
     </div>
   );
 };

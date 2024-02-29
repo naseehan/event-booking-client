@@ -8,7 +8,7 @@ const [category, setCategory] = useState("");
 const value = useSelector((state) => {
   return state;
 })
-console.log(value);
+
 const dispatch = useDispatch();
 
 const handleClick = (e) => {

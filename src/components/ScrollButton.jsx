@@ -6,7 +6,7 @@ const ScrollButton = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY < 10) {
+      if (window.scrollY > 0) {
         setScroll(true);
       } else {
         setScroll(false);

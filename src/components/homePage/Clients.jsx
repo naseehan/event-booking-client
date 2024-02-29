@@ -25,28 +25,30 @@ const Clients = () => {
         </div>
         <div class="row">
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client1} alt=""/></a>
+                <a href="#" class="client__item" >
+                    <img  src={client1} alt="client"/>
+                    </a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client2} alt=""/></a>
+                <a href="#" class="client__item"><img src={client2} alt="client"/></a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client3} alt=""/></a>
+                <a href="#" class="client__item"><img src={client3} alt="client"/></a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client4} alt=""/></a>
+                <a href="#" class="client__item"><img src={client4} alt="client"/></a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client5} alt=""/></a>
+                <a href="#" class="client__item"><img src={client5} alt="client"/></a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client6} alt=""/></a>
+                <a href="#" class="client__item"><img src={client6} alt="client"/></a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client7} alt=""/></a>
+                <a href="#" class="client__item"><img src={client7} alt="client"/></a>
             </div>
             <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client8} alt=""/></a>
+                <a href="#" class="client__item"><img src={client8} alt="client"/></a>
             </div>
         </div>
     </div>

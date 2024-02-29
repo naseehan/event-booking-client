@@ -35,7 +35,6 @@ const Login = ({ setAdminEmail }) => {
       // const adminEmail = response.data.result.existingUser.email;
 
       setAdminEmail(response.data.result.existingUser.email);
-      console.log(response.data.result.existingUser.email);
       if (response.status === 201) {
         localStorage.setItem("userstokentoken", response.data.result.token);
         localStorage.setItem("email", response.data.result.existingUser.email);
@@ -143,12 +142,12 @@ const Login = ({ setAdminEmail }) => {
 
                 <div>
                   <p className="mb-0">
-                    Don't have an account?
+                    Don't have an account ? 
                     {/* <a href="/signup" className="text-white-50 fw-bold">
                       Sign Up
                     </a> */}
-                    <Link to="/signup" className="text-white-50 fw-bold">
-                Sign up
+                    <Link to="/signup" className="text-white-50 fw-bold ml-1">
+                 Sign up
               </Link>
                   </p>
                 </div>

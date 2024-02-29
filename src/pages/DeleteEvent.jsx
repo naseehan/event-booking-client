@@ -58,6 +58,9 @@ const DeleteEvent = () => {
         trigger="loop"
         delay="2000"
         colors="primary:#ffffff"
+        style={{
+          placeSelf: 'center',
+          }}
         >
     </lord-icon>
             <h2>{data.name}</h2>

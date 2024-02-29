@@ -213,6 +213,7 @@ button::after {
   background-color: #f4f4f4;
   position: relative;
   top: 18rem;
+  font-family: "Kanit", sans-serif;
   /* max-width: 78rem; */
   /* left: 5rem; */
   left: 6%;

@@ -3,9 +3,10 @@ import "../stylePages/events/App.css";
 import axios from "axios";
 import ScrollButton from "../components/ScrollButton";
 
+
 const Events = () => {
   const [event, setEvent] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -24,7 +25,7 @@ const Events = () => {
         setLoading(false);
       } catch (error) {
         console.error("Error fetching events:", error);
-        setLoading(false);
+        setLoading(true);
       }
     };
     fetchEvents();
@@ -33,15 +34,12 @@ const Events = () => {
   return (
     <div>
       {loading ? (
-        <div class="loader">
-          <span class="bar"></span>
-          <span class="bar"></span>
-          <span class="bar"></span>
-        </div>
+        
+        <div class="loader-animation"></div>
       ) : (
         <container className="event-container">
           {event.map((data, index) => (
-            <div className="all-events">
+            <div className="all-events" data-aos={index % 2 === 0 ? 'fade-up' : 'fade-down'}>
               <div className="event-details">
                 <div className="first-child">
                   <i className="fa-solid fa-calendar-days "></i>
@@ -77,7 +75,7 @@ const Events = () => {
 
           ))}
         </container>
-       )} 
+       )}  
         <ScrollButton />
     </div>
    

@@ -131,9 +131,12 @@
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
 }
+
+
 /* .slick-slider .common-event .text-overlay:hover{
 
 } */
+
 .slick-arrow:before {
   color: black !important;
 }

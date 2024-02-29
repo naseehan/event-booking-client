@@ -30,6 +30,7 @@
   border-radius: 4px;
   padding: 0.4rem;
   width: 20rem;
+  color: #fff;
 }
 .create-container button {
   background-color: #484c7f;
@@ -57,6 +58,7 @@ textarea {
   border: 1px solid #ced4da;
   border-radius: 4px;
   padding: 0.4rem;
+  color: #fff;
 }
 .create-container .active-task-details {
   padding: 2rem;

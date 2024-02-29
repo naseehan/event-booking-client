@@ -61,7 +61,7 @@ const handleClick = async(id) => {
 
 return (
 <section className="h-100 mt-5" style={{ backgroundColor: "#eee" }}>
-  <MDBContainer className="py-5 h-100">
+  <MDBContainer className="py-5 h-100" style={{ fontFamily: "Rubik, sans-serif"}}>
     <MDBRow className="justify-content-center align-items-center h-100">
       <MDBCol md="10">
         <div className="d-flex justify-content-between align-items-center mb-4">

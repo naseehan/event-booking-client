@@ -207,6 +207,7 @@ button::after {
   background-color: #f4f4f4;
   position: relative;
   top: 23rem;
+  font-family: "Rubik", sans-serif;
   /* width: 78rem; */
   /* left: 5rem; */
   left: 7%;
