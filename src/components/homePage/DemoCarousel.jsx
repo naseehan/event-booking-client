@@ -41,7 +41,7 @@ const DemoCarousel = () => {
 
   const [event, setEvent] = useState([]);
   // cosnt [userId, setUserId] = useState()
-  const [noEvent, setNoEvent] = useState(false);
+  const [noEvent, setNoEvent] = useState(true);
   useEffect(() => {
     const fetchEvents = async () => {
       try {

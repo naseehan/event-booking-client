@@ -25,12 +25,7 @@ const CreateEvent = () => {
     setPlace(e.target.value);
   };
   const handlePrice = (e) => {
-    // const price = e.target.value;
-    // if(price.length > 5 ) {
-    //   setPrice(price.slice(0, 5));
-    // }else{
       setPrice(e.target.value);
-    // }
   };
   const handleDate = (e) => {
     const selectedDate = new Date(e.target.value);

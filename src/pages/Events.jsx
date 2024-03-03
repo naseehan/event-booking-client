@@ -6,9 +6,11 @@ import ScrollButton from "../components/ScrollButton";
 
 const Events = () => {
   const [event, setEvent] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
+    
     const fetchEvents = async () => {
       try {
         // const userId = localStorage.getItem("userId")
@@ -22,22 +24,24 @@ const Events = () => {
           // }
         );
         setEvent(response.data);
-        setLoading(false);
+       
+        setLoading(false)
       } catch (error) {
         console.error("Error fetching events:", error);
         setLoading(true);
       }
     };
+   
     fetchEvents();
   }, []);
-
+  
   return (
     <div>
       {loading ? (
         
-        <div class="loader-animation"></div>
+        <div className="loader-animation"></div>
       ) : (
-        <container className="event-container">
+        <div className="event-container">
           {event.map((data, index) => (
             <div className="all-events" data-aos={index % 2 === 0 ? 'fade-up' : 'fade-down'}>
               <div className="event-details">
@@ -74,7 +78,7 @@ const Events = () => {
 
 
           ))}
-        </container>
+        </div>
        )}  
         <ScrollButton />
     </div>
