@@ -56,6 +56,7 @@ const DemoCarousel = () => {
           // }
         );
         setEvent(response.data);
+        // console.log(event);
         setNoEvent(false);
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -66,7 +67,6 @@ const DemoCarousel = () => {
   }, []);
 
  
-
 
 
 
@@ -99,29 +99,29 @@ const DemoCarousel = () => {
   return (
     <>
       {noEvent ? (
-        <div class="loader1">
-          <div class="wrapper">
-            <div class="circle"></div>
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-            <div class="line-3"></div>
-            <div class="line-4"></div>
+        <div className="loader1">
+          <div className="wrapper">
+            <div className="circle"></div>
+            <div className="line-1"></div>
+            <div className="line-2"></div>
+            <div className="line-3"></div>
+            <div className="line-4"></div>
           </div>
 
-          <div class="wrapper">
-            <div class="circle"></div>
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-            <div class="line-3"></div>
-            <div class="line-4"></div>
+          <div className="wrapper">
+            <div className="circle"></div>
+            <div className="line-1"></div>
+            <div className="line-2"></div>
+            <div className="line-3"></div>
+            <div className="line-4"></div>
           </div>
 
-          <div class="wrapper">
-            <div class="circle"></div>
-            <div class="line-1"></div>
-            <div class="line-2"></div>
-            <div class="line-3"></div>
-            <div class="line-4"></div>
+          <div className="wrapper">
+            <div className="circle"></div>
+            <div className="line-1"></div>
+            <div className="line-2"></div>
+            <div className="line-3"></div>
+            <div className="line-4"></div>
           </div>
         </div>
       ) : (

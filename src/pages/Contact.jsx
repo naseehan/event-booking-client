@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { MDBInput, MDBCheckbox, MDBBtn, MDBTextArea } from 'mdb-react-ui-kit';
 import "../stylePages/contact/App.css"
+// import "../stylePages/contact/bootstrap.min.css"
+// import "../stylePages/contact/animate.css"
+// import "../stylePages/contact/bootstrap"
+
+
 import ScrollButton from '../components/ScrollButton';
 import FAQ from '../components/FAQ';
 export default function Contact() {
@@ -51,14 +56,17 @@ const handleSubmit = (e) => {
 
       <MDBTextArea wrapperClass='mb-4' label='Message'  required/>
 
-      {/* <MDBCheckbox wrapperClass='d-flex justify-content-center' label='Send me copy' /> */}
+      <MDBCheckbox wrapperClass='d-flex justify-content-center' label='Send me copy' />
 
       <MDBBtn type='submit' color='primary' block className={`my-4 ${error || emailError ? 'button-disable' : ''}`} disabled={error || emailError}>
         Send
       </MDBBtn>
     </form>
     <ScrollButton />
-    </div>
+     </div>
+
+   
+
 
     <FAQ />
     </div>

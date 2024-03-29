@@ -24,9 +24,11 @@ const Login = ({ setAdminEmail }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try {
       const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, {
         email,
@@ -42,12 +44,14 @@ const Login = ({ setAdminEmail }) => {
 
         // Dispatch the action to set the adminEmail in Redux
         // dispatch(setAdminEmail(adminEmail));
+        setLoading(false)
         navigate("/");
         window.location.reload();
         // history.push('/');
       }
     } catch (error) {
       if (error.response) {
+        setLoading(false)
         if (error.response.status === 300) {
           setError("Invalid email or Password");
         } else if (error.response.status === 400) {
@@ -56,17 +60,28 @@ const Login = ({ setAdminEmail }) => {
           setError("An error occured please try again later.");
         }
       } else {
+        setLoading(false)
         // Request was made but no response was received
         setError("An error occurred. Please check your internet connection.");
       }
       setTimeout(() => {
         setError(null);
-      }, 2000);
+      }, 4000);
     }
   };
 
   return (
     <MDBContainer fluid>
+      {/* loading animation */}
+       {loading ? (
+        <div class="login-loader">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+      ) : null}
+
       <form action="" onSubmit={handleSubmit}>
         <MDBRow className="d-flex justify-content-center align-items-center h-100">
           <MDBCol col="12">

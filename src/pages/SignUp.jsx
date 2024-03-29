@@ -8,79 +8,104 @@ import {
 } from "mdb-react-ui-kit";
 import "mdb-react-ui-kit/dist/css/mdb.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import axios from "axios"
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import "../stylePages/signup/App.css"
+import "../stylePages/signup/App.css";
 
 const SignUp = () => {
-
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(null);
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
   const [passError, setPassError] = useState(false);
   const [passInput, setPassInput] = useState("");
-  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false);
+  const [failedSignUp, setFailedSignUp] = useState("");
+  const navigate = useNavigate();
 
   const handleEmail = (e) => {
-
     // setEmail(e.target.value)
 
-
-      const email = e.target.value;
-      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-        setError(true) 
-      }else{
-        setEmail(e.target.value)
-        setError(false)
+    const email = e.target.value;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setError(true);
+    } else {
+      setEmail(e.target.value);
+      setError(false);
     }
-  }
-  
-    const handlePassword = (e) => {
-      // setPassword(e.target.value)
-     const password = e.target.value;
-     
-     if(password.length < 5){
-      setPassError(true)
-      setPassInput("Password must be between 5 and 15 characters")
-     }else if(!/[A-Z]/.test(password)){
-      setPassError(true)
-      setPassInput("Please add a capital letter")
-     }else if(!/[0-9]/.test(password)){
-      setPassError(true)
-      setPassInput("Please add a number")
-     }else{
-      setPassword(e.target.value)
-      setPassError(false)
-     }
-  }
+  };
 
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    try{
-   const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signup`,{email, password} )
-    setPassword("")
-    setEmail("")
-    if(response.status === 201 ){
-      setSuccess("User created successfully")
+  const handlePassword = (e) => {
+    // setPassword(e.target.value)
+    const password = e.target.value;
+
+    if (password.length < 5) {
+      setPassError(true);
+      setPassInput("Password must be between 5 and 15 characters");
+    } else if (!/[A-Z]/.test(password)) {
+      setPassError(true);
+      setPassInput("Please add a capital letter");
+    } else if (!/[0-9]/.test(password)) {
+      setPassError(true);
+      setPassInput("Please add a number");
+    } else {
+      setPassword(e.target.value);
+      setPassError(false);
     }
-    // setTimeout(() =>{
-    //   setSuccess(null)
-    // }, 2000)
-   
-    navigate("/login")
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/signup`,
+        { email, password }
+      );
+      setPassword("");
+      setEmail("");
+      if (response.status === 201) {
+        setSuccess("User created successfully");
+      }
+      // setTimeout(() =>{
+      //   setSuccess(null)
+      // }, 2000)
+      setLoading(false);
+      navigate("/login");
     } catch (error) {
-        console.error('error saving user', error);
+      if(error.response){
+        setLoading(false)
+        if(error.response.status === 400){
+          setFailedSignUp("Email already in use!!!")
+        }
+      }else{
+        setLoading(false)
+        setFailedSignUp("An error occured. Please check your internet connection")
+      }
+      setTimeout(() => {
+        setFailedSignUp("");
+      },4000)
     }
   };
 
   return (
     <div className="sign-up">
-      
-        <MDBContainer className="p-3 my-5 d-flex flex-column">
-        <form  onSubmit={handleSubmit}>
-      {success!== null ?  <p className="text-white-50 mb-3" style={{ color: 'green' }}>{success}</p> : null}
+      {loading ? (
+        <div class="sign-up-loader">
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+          <div class="circle"></div>
+        </div>
+      ) : null}
+
+      <MDBContainer className="p-3 my-5 d-flex flex-column">
+        <form onSubmit={handleSubmit}>
+          {success !== null ? (
+            <p className="text-white-50 mb-3" style={{ color: "green" }}>
+              {success}
+            </p>
+          ) : null}
 
           <MDBInput
             wrapperClass="mb-4"
@@ -93,8 +118,9 @@ const SignUp = () => {
             maxLength={25}
           />
 
-              {error ? (<p className="error-message">Please Enter a Valid Email</p>) : null}
-
+          {error ? (
+            <p className="error-message">Please Enter a Valid Email</p>
+          ) : null}
 
           <MDBInput
             wrapperClass="mb-4"
@@ -106,7 +132,7 @@ const SignUp = () => {
             required
             maxLength={15}
           />
-        {passError ? (<p className="pass-input">{passInput}</p>) : null}
+          {passError ? <p className="pass-input">{passInput}</p> : null}
           {/* <div className="d-flex justify-content-between mx-3 mb-4">
             <MDBCheckbox
               name="flexCheck"
@@ -117,15 +143,24 @@ const SignUp = () => {
             <a href="!#">Forgot password?</a>
           </div> */}
 
-          <MDBBtn className={`mb-4 ${error || passError ? 'button-error' : ''}`} type="submit" disabled={error || passError}>
+{failedSignUp && (
+  <p className="pass-input">{failedSignUp}</p>
+)}
+
+
+          <MDBBtn
+            className={`mb-4 ${error || passError ? "button-error" : ""}`}
+            type="submit"
+            disabled={error || passError}
+          >
             Sign in
           </MDBBtn>
 
           <div className="text-center">
             <Link to="/login">
-            <p>
-              Already have an account ? <a href="#!">Login</a>
-            </p>
+              <p>
+                Already have an account ? <a href="#!">Login</a>
+              </p>
             </Link>
             {/* <p>or sign up with:</p> */}
 
@@ -170,9 +205,8 @@ const SignUp = () => {
               </MDBBtn>
             </div> */}
           </div>
-          </form>
-        </MDBContainer>
-    
+        </form>
+      </MDBContainer>
     </div>
   );
 };

@@ -254,8 +254,8 @@ export default function App() {
         style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
       >
         © 2024 Copyright :
-        <a className="text-white" href="https://royaltickets.com/">
-          royaltickets.com
+        <a className="text-white" href="https://noble-events.onrender.com/">
+          nobleevents.com
         </a>
       </div>
     </MDBFooter>
