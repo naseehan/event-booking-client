@@ -41,6 +41,16 @@
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
+  position: relative;
+}
+.event-names .expired{
+  background-color: red;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
 }
 .event-names i {
   align-self: center;

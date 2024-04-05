@@ -7,6 +7,7 @@ import ScrollButton from "../components/ScrollButton";
 const Events = () => {
   const [event, setEvent] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [expired, setExpired] = useState(false)
 
 
   useEffect(() => {
@@ -24,7 +25,7 @@ const Events = () => {
           // }
         );
         setEvent(response.data);
-       
+       console.log(response.data);
         setLoading(false)
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -68,6 +69,9 @@ const Events = () => {
                 </div>
               </div>
               <div className="event-names">
+                <div className="expired">
+                  Expired
+                </div>
                 <i className="fa-solid fa-circle-exclamation fa-2xl"></i>
                 <h1>{data.name}</h1>
                 <p>{data.category}</p>

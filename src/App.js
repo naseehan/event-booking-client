@@ -20,6 +20,8 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import Events from "./pages/Events";
 import Cart2 from "./pages/Cart2";
+import Successful from "./pages/Successful";
+import Cancel from "./pages/Cancel";
 
 function App() {
   const [adminEmail, setAdminEmail] = useState("");
@@ -47,6 +49,8 @@ function App() {
           <Route path="/confirm2" element={<Confirm2 />} />
           <Route path="/events" element={<Events />} />
           <Route path="/cart2" element={<Cart2 />} />
+          <Route path="/success" element={<Successful />} />
+          <Route path="/cancel" element={<Cancel />} />
         </Routes>
        
 

@@ -13,6 +13,7 @@ import {
 } from "mdb-react-ui-kit";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+import {loadStripe} from '@stripe/stripe-js';
 
 export default function Cart2() {
 
@@ -30,7 +31,6 @@ useEffect(() => {
           },
         });
         setCart(response.data);
-        console.log(response.data);
     } catch (error) {
        console.error("Error fetching cart:", error);
     }
@@ -52,11 +52,54 @@ const handleClick = async(id) => {
         prevEvents.filter((data) => data.id !== id)
       })
     } catch (error) {
-      console.error("Error deleting data:", error);
+      console.error("Error  data:", error);
     }
   }else{
 
   }
+}
+
+
+const makePayment = async() => {
+  try{
+  const stripe = await loadStripe(`${process.env.REACT_APP_STRIPE_KEY}`)
+
+  const body = {
+    products: cart
+  }
+
+  const headers= {
+    "Content-Type":"application/json"
+  }
+
+  // const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/purchase`,body,{
+  //   // method:"POST",
+  //   headers:headers,
+  //   // body:JSON.stringify(body)
+  // })
+
+  const response = await fetch(`${process.env.REACT_APP_BASE_URL}/purchase`, {
+    method: "POST",
+    headers: headers,
+    body: JSON.stringify(body),
+  });
+
+  const session = await response.json()
+
+  // const session = response.data;
+  const result = stripe.redirectToCheckout({
+    sessionId:session.id
+  })
+  if(result.error){
+    console.log(result.error);
+  }
+  // setCart(null)
+  }
+  catch(error){
+    console.error("Error  data:", error);
+
+  }
+
 }
 
 return (
@@ -108,7 +151,7 @@ return (
 ))}
         <MDBCard>
           <MDBCardBody>
-            <MDBBtn className="ms-3" color="warning" block size="lg">
+            <MDBBtn className="ms-3" color="warning" block size="lg" onClick={makePayment}>
               Confirm
             </MDBBtn>
           </MDBCardBody>
