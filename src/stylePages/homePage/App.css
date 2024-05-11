@@ -43,7 +43,22 @@
   border: none;
   appearance: n;
 }
-
+.search-section .search-results{
+  position: relative;
+  z-index: 999999999;
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 4px;
+  gap: 20px;
+    display: grid;
+}
+.search-results ul{
+  list-style: none;
+  margin-bottom: 0;
+  border: 1px solid;
+  border-radius: 4px;
+  cursor: pointer;
+}
 /* Search button */
 .button-28 {
   appearance: none;

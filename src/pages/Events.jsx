@@ -69,9 +69,9 @@ const Events = () => {
                 </div>
               </div>
               <div className="event-names">
-                <div className="expired">
+                {/* <div className="expired">
                   Expired
-                </div>
+                </div> */}
                 <i className="fa-solid fa-circle-exclamation fa-2xl"></i>
                 <h1>{data.name}</h1>
                 <p>{data.category}</p>

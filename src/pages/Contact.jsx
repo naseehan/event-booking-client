@@ -4,7 +4,9 @@ import "../stylePages/contact/App.css"
 // import "../stylePages/contact/bootstrap.min.css"
 // import "../stylePages/contact/animate.css"
 // import "../stylePages/contact/bootstrap"
-
+// import Swal from 'sweetalert2'
+// // import Swal from 'sweetalert2/dist/sweetalert2.js'
+// import 'sweetalert2/src/sweetalert2.scss'
 
 import ScrollButton from '../components/ScrollButton';
 import FAQ from '../components/FAQ';
@@ -38,6 +40,13 @@ const handleEmail = (e) => {
 
 const handleSubmit = (e) => {
   alert("Successfully sent message")
+//    { Swal.fire({
+//   position: "top-end",
+//   icon: "success",
+//   title: "Your work has been saved",
+//   showConfirmButton: false,
+//   timer: 1500
+// })} 
 }
 
   return (
@@ -67,7 +76,7 @@ const handleSubmit = (e) => {
 
    
 
-
+    
     <FAQ />
     </div>
   );

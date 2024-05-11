@@ -6,7 +6,21 @@ body {
   background-color: #ebf0fa;
 }
 
-
+.search-overlay{
+    opacity: 0;
+    display: none;
+    position: fixed;
+    background-color: rgba(0,0,0,.3) !important;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.search-overlay-active{
+  opacity: 1;
+  display: flex;
+}
 
 @media only screen and (max-width: 760px) {
   .App {
