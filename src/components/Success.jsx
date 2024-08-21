@@ -2,6 +2,9 @@ import React from "react";
 import "../stylePages/success/App.css";
 const Success = () => {
   return (
+
+
+
     <div class="container">
       <div class="row">
         <div id="aui-flag-container">

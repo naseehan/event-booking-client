@@ -1,3 +1,11 @@
+.for-sort{
+  position: relative;
+}
+.sort {
+  position: absolute;
+  top: -2%;
+  right: 0%;
+}
 .event-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -43,7 +51,7 @@
   overflow: hidden;
   position: relative;
 }
-.event-names .expired{
+.event-names .expired {
   background-color: red;
   position: absolute;
   right: 0;
@@ -71,14 +79,13 @@
 
 /* loader-animation styles */
 
-
 /* HTML: <div class="loader-animation"></div> */
 .loader-animation {
   width: fit-content;
   font-weight: bold;
   font-family: monospace;
   font-size: 30px;
-  background: linear-gradient(90deg,#000 50%,#0000 0) right/200% 100%;
+  background: linear-gradient(90deg, #000 50%, #0000 0) right/200% 100%;
   animation: l21 2s infinite linear;
   margin: 10% auto;
 }
@@ -88,14 +95,14 @@
   color: #0000;
   padding: 0 5px;
   background: inherit;
-  background-image: linear-gradient(90deg,#fff 50%,#000 0);
+  background-image: linear-gradient(90deg, #fff 50%, #000 0);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
 @keyframes l21 {
   100% {
-    background-position: left
+    background-position: left;
   }
 }
 
@@ -126,7 +133,7 @@
 } */
 
 /* @keyframes scale-up4 { */
-  /* 20% {
+/* 20% {
     background-color: #ffff;
     transform: scaleY(1.5);
   }
@@ -135,7 +142,7 @@
     transform: scaleY(1);
   } */
 
-  /* 0% {
+/* 0% {
     background-color: #ffff;
     transform: scaleY(1.5);
   }
@@ -152,9 +159,12 @@
 } */
 
 /* mobile devices */
-@media (max-width:1444px){
+@media (max-width: 1444px) {
   .event-container {
     grid-template-columns: 1fr;
+  }
+  .sort{
+    top: -1%;
   }
 }
 @media only screen and (max-width: 768px) {
