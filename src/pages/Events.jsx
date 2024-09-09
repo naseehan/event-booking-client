@@ -60,6 +60,7 @@ const Events = () => {
       {loading ? (
         <div className="loader-animation"></div>
       ) : (
+        // <div>
         <div className="event-container">
           {sortedEvents.map((data, index) => {
             const eventDateStr = `${data.date} ${today.getFullYear()}`;
@@ -109,6 +110,7 @@ const Events = () => {
             );
           })}
         </div>
+        // {/* </div> */}
       )}
       <ScrollButton />
     </div>
