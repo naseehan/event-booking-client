@@ -55,7 +55,7 @@ const DemoCarousel = () => {
           //   },
           // }
         );
-        setEvent(response.data);
+        setEvent(response.data.getEvents);
         // console.log(event);
         setNoEvent(false);
       } catch (error) {
