@@ -56,7 +56,6 @@ const DemoCarousel = () => {
           // }
         );
         setEvent(response.data.getEvents);
-        // console.log(event);
         setNoEvent(false);
       } catch (error) {
         console.error("Error fetching events:", error);

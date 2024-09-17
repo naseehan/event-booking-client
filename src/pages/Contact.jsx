@@ -65,8 +65,6 @@ const handleSubmit = (e) => {
 
       <MDBTextArea wrapperClass='mb-4' label='Message'  required/>
 
-      <MDBCheckbox wrapperClass='d-flex justify-content-center' label='Send me copy' />
-
       <MDBBtn type='submit' color='primary' block className={`my-4 ${error || emailError ? 'button-disable' : ''}`} disabled={error || emailError}>
         Send
       </MDBBtn>
