@@ -13,42 +13,42 @@ import '../../stylePages/client/style.css'
 
 const Clients = () => {
   return (
-    <section class="clients spad">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="section-title">
+    <section className="clients spad">
+    <div className="container">
+        <div className="row">
+            <div className="col-lg-12">
+                <div className="section-title">
                     <span>Partner</span>
                     <h2>Happy Clients</h2>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item" >
+        <div className="row">
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item" >
                     <img  src={client1} alt="client"/>
                     </a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client2} alt="client"/></a>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item"><img src={client2} alt="client"/></a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client3} alt="client"/></a>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item"><img src={client3} alt="client"/></a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client4} alt="client"/></a>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item"><img src={client4} alt="client"/></a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client5} alt="client"/></a>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item"><img src={client5} alt="client"/></a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client6} alt="client"/></a>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item"><img src={client6} alt="client"/></a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client7} alt="client"/></a>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item"><img src={client7} alt="client"/></a>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" class="client__item"><img src={client8} alt="client"/></a>
+            <div className="col-lg-3 col-md-4 col-sm-4 col-6">
+                <a href="#" className="client__item"><img src={client8} alt="client"/></a>
             </div>
         </div>
     </div>

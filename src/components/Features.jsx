@@ -19,7 +19,7 @@ const Features = () => {
             </div>
             <div className="col-md-6 col-lg-6 col-xl-3">
               <div className="counter bg-white rounded p-5">
-                <i class="fa-solid fa-calendar-days"></i>{" "}
+                <i className="fa-solid fa-calendar-days"></i>{" "}
                 <h4>EVENTS CREATED</h4>
                 <h1>9999+</h1>
               </div>

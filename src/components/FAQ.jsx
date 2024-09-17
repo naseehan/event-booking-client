@@ -42,7 +42,7 @@ function FAQ() {
               onClick={handleAnswer}
             >
               <p>1. How can I book tickets for an event?</p>
-              <i class="fa-sharp fa-solid fa-angle-down"></i>
+              <i className="fa-sharp fa-solid fa-angle-down"></i>
             </div>
             <div className={`answer ${answer ? "active-answer" : ""}`}>
               <p>
@@ -61,7 +61,7 @@ function FAQ() {
               className={`question ${secondAnswer ? "active-question" : ""}`}
             >
               <p>How the payments works? </p>
-              <i class="fa-sharp fa-solid fa-angle-down"></i>
+              <i className="fa-sharp fa-solid fa-angle-down"></i>
             </div>
             <div className={`answer ${secondAnswer ? "active-answer" : ""}`}>
               <p>
@@ -80,7 +80,7 @@ function FAQ() {
               className={`question ${thirdAnswer ? "active-question" : ""}`}
             >
               <p>How and when do I get paid after selling my tickets? </p>
-              <i class="fa-sharp fa-solid fa-angle-down"></i>
+              <i className="fa-sharp fa-solid fa-angle-down"></i>
             </div>
             <div className={`answer ${thirdAnswer ? "active-answer" : ""}`}>
               <p>

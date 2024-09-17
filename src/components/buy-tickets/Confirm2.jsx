@@ -106,17 +106,7 @@ const Confirm2 = () => {
         </div>
       </div>
 
-      {/* <h1 style={{ marginTop: "20%", textAlign: "center"  } @media (max-width:928px){
-         marginTop: "145%"
-      }}>
-        Other Events You May Like
-      </h1> */}
-
-<h1 className="other-events">
-  Other Events You May Like
-</h1>
-
-
+      <h1 className="other-events">Other Events You May Like</h1>
 
       <Swiper />
     </div>

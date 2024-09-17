@@ -101,6 +101,7 @@ const Login = ({ setAdminEmail }) => {
                 )}
                 <MDBInput
                   wrapperClass="mb-4 mx-5 w-100"
+                  className="text-white"
                   labelClass="text-white"
                   label="Email address"
                   id="formControlLg"
@@ -116,6 +117,7 @@ const Login = ({ setAdminEmail }) => {
                 />
                 <MDBInput
                   wrapperClass="mb-4 mx-5 w-100"
+                  className="text-white"
                   labelClass="text-white"
                   label="Password"
                   id="formControlLg"
