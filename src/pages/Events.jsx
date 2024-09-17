@@ -36,8 +36,6 @@ const Events = () => {
           }
         );
         setEvents(response.data.getEvents);
-        // setTotalEvents(response.data.length);
-        // console.log(response.data.length);
         setTotalEvents(response.data.allEvents);
         
         
@@ -94,16 +92,14 @@ const handlePageNumberClick = (pageNumber) => {
       {loading ? (
         <div className="loader-animation"></div>
       ) : (
-        // <div>
         <div className="event-container">
           {sortedEvents.map((data, index) => {
             const eventDateStr = `${data.date} ${today.getFullYear()}`;
             const eventDate = new Date(eventDateStr);
 
             return (
-              <>
                 <div
-                  key={data.id}
+                  key={data._id}
                   className="all-events"
                   data-aos={index % 2 === 0 ? "fade-up" : "fade-down"}
                 >
@@ -139,11 +135,9 @@ const handlePageNumberClick = (pageNumber) => {
                     <p>{data.category}</p>
                   </div>
                 </div>
-              </>
             );
           })}
         </div>
-        // {/* </div> */}
       )}
 
 <div className="pagination">
