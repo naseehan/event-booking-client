@@ -39,8 +39,8 @@ const Navbar = () => {
   };
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      {/* <a class="navbar-brand" href="#">Navbar</a> */}
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      {/* <a className="navbar-brand" href="#">Navbar</a> */}
       {/* <div className="logo"> */}
       <Link to="/">
         <img src={logo} alt="logo" className="navbar-brand " />
@@ -56,7 +56,7 @@ const Navbar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
       <div
@@ -65,7 +65,7 @@ const Navbar = () => {
       >
         <ul className="navbar-nav  navbar-own-styles">
           <li className="nav-item active">
-            {/* <a className="nav-link" >Home <span class="sr-only">(current)</span></a> */}
+            {/* <a className="nav-link" >Home <span className="sr-only">(current)</span></a> */}
             <Link
               to="/"
               className="nav-link"
@@ -127,39 +127,39 @@ const Navbar = () => {
             <li className="nav-item active">
               <Link to="/login" onClick={handleClick} className="nav-link">
                 {/* logout button */}
-                <button class="Btn">
-                  <div class="sign">
+                <button className="Btn">
+                  <div className="sign">
                     <svg viewBox="0 0 512 512">
                       <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
                     </svg>
                   </div>
 
-                  <div class="text">Logout</div>
+                  <div className="text">Logout</div>
                 </button>
               </Link>
             </li>
           )}
-          {/* <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          {/* <li className="nav-item">
+          <a className="nav-link" href="#">Link</a>
         </li> */}
-          {/* <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {/* <li className="nav-item dropdown">
+          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
           </a> */}
-          {/* <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+          {/* <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a className="dropdown-item" href="#">Action</a>
+            <a className="dropdown-item" href="#">Another action</a>
+            <div className="dropdown-divider"></div>
+            <a className="dropdown-item" href="#">Something else here</a>
           </div> */}
           {/* </li> */}
-          {/* <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          {/* <li className="nav-item">
+          <a className="nav-link disabled" href="#">Disabled</a>
         </li> */}
         </ul>
-        {/* <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        {/* <form className="form-inline my-2 my-lg-0">
+        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
       </form> */}
       </div>
     </nav>

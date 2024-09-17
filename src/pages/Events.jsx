@@ -19,13 +19,28 @@ const Events = () => {
   const [loading, setLoading] = useState(true);
   const [sortValue, setSortValue] = useState("");
 
+  const [totalEvents, setTotalEvents] = useState(0)
+  const [currentPage, setCurrentPage] = useState(1)
+  const perPage = 6;
+
   useEffect(() => {
     const fetchEvents = async () => {
+      const offset = (currentPage -1) * perPage
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_BASE_URL}/getEvent`
+          `${process.env.REACT_APP_BASE_URL}/getEvent`,{
+            params:{
+              limit: perPage,
+              skip: offset
+            }
+          }
         );
-        setEvents(response.data);
+        setEvents(response.data.getEvents);
+        // setTotalEvents(response.data.length);
+        // console.log(response.data.length);
+        setTotalEvents(response.data.allEvents);
+        
+        
         setLoading(false);
       } catch (error) {
         console.error("Error fetching events:", error);
@@ -33,7 +48,26 @@ const Events = () => {
       }
     };
     fetchEvents();
-  }, []);
+  }, [currentPage]);
+
+  const totalPage = Math.ceil(totalEvents / perPage)
+  const pageNumber = Array.from({ length: totalPage}, (_, i) => i + 1)
+
+  const handlePrevious = () => {
+    if(currentPage >1){
+      setCurrentPage(currentPage -1)
+    }
+  }
+
+  const handleNext = () => {
+    if(currentPage < totalPage){
+      setCurrentPage(currentPage +1)
+    }
+  }
+
+const handlePageNumberClick = (pageNumber) => {
+  setCurrentPage(pageNumber)
+}
 
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
@@ -76,7 +110,6 @@ const Events = () => {
                   {eventDate < today && (
                     <Expired className="expired">Expired</Expired>
                   )}
-                  {console.log(data.date)}
                   <div className="event-details">
                     <div className="first-child">
                       <i className="fa-solid fa-calendar-days"></i>
@@ -112,6 +145,36 @@ const Events = () => {
         </div>
         // {/* </div> */}
       )}
+
+<div className="pagination">
+        <button
+          className="paginationButton"
+          onClick={handlePrevious}
+          disabled={currentPage === 1}
+        >
+          ⬅️
+        </button>
+        {pageNumber.map((pageNum) => (
+          <button
+            className={`paginationButton ${
+              currentPage === pageNum ? "active " : ""
+            }`}
+            key={pageNum}
+            onClick={() => handlePageNumberClick(pageNum)}
+          >
+            {pageNum}
+          </button>
+        ))}
+        <button
+          className="paginationButton"
+          onClick={handleNext}
+          disabled={currentPage === totalPage}
+        >
+          ➡️
+        </button>
+      </div>
+
+
       <ScrollButton />
     </div>
   );
