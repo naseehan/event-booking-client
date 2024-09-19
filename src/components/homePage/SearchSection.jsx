@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const SearchSection = () => {
   const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState()
   const [searchResults, setSearchResults] = useState(false);
   const [fetchedEvents, setFetchedEvents] = useState();
   const [overlay, setOverlay] = useState(false);
@@ -15,7 +16,7 @@ const SearchSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true)
     try {
       const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/searchedEvents`, {
         params: {
@@ -25,7 +26,9 @@ const SearchSection = () => {
       setFetchedEvents(response.data);
       setSearchResults(!searchResults);
       setOverlay(true);
+      setLoading(false)
     } catch (error) {
+      setLoading(true)
       console.error("Error fetching events:", error);
     }
   };
@@ -104,7 +107,11 @@ const SearchSection = () => {
         </div>
       </form>
       
+      {loading ? <p>Loading...</p> : (
+        <>
         {searchResults && (
+          
+          
             <div className="search-results">
               {fetchedEvents.length == 0 && "No events found"}
               {fetchedEvents.map((data) => (
@@ -121,8 +128,10 @@ const SearchSection = () => {
                   </ul>
               ))}
             </div>
-        
+       
       )}
+      </>
+    )}
     </div>
   );
 };

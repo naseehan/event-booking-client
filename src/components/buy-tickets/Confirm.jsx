@@ -99,7 +99,7 @@ console.log("dsfd");
 ) : null}
 
       <div className="confirm-ticket">
-        <img src={ticket} alt="" />
+        <img src={ticket} alt="" loading="lazy"/>
         <div className="card-body">
           <h5>Ticket</h5>
           <p>$18.00</p>

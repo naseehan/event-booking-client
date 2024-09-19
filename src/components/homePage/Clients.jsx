@@ -30,25 +30,25 @@ const Clients = () => {
                     </a>
             </div>
             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" className="client__item"><img src={client2} alt="client"/></a>
+                <a href="#" className="client__item"><img src={client2} loading='lazy' alt="client"/></a>
             </div>
             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" className="client__item"><img src={client3} alt="client"/></a>
+                <a href="#" className="client__item"><img src={client3} loading='lazy' alt="client"/></a>
             </div>
             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" className="client__item"><img src={client4} alt="client"/></a>
+                <a href="#" className="client__item"><img src={client4} loading='lazy' alt="client"/></a>
             </div>
             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" className="client__item"><img src={client5} alt="client"/></a>
+                <a href="#" className="client__item"><img src={client5} loading='lazy' alt="client"/></a>
             </div>
             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" className="client__item"><img src={client6} alt="client"/></a>
+                <a href="#" className="client__item"><img src={client6} loading='lazy' alt="client"/></a>
             </div>
             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" className="client__item"><img src={client7} alt="client"/></a>
+                <a href="#" className="client__item"><img src={client7} loading='lazy' alt="client"/></a>
             </div>
             <div className="col-lg-3 col-md-4 col-sm-4 col-6">
-                <a href="#" className="client__item"><img src={client8} alt="client"/></a>
+                <a href="#" className="client__item"><img src={client8} loading='lazy' alt="client"/></a>
             </div>
         </div>
     </div>

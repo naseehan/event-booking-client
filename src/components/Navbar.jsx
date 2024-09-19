@@ -43,7 +43,7 @@ const Navbar = () => {
       {/* <a className="navbar-brand" href="#">Navbar</a> */}
       {/* <div className="logo"> */}
       <Link to="/">
-        <img src={logo} alt="logo" className="navbar-brand " />
+        <img src={logo} alt="logo" className="navbar-brand " loading="lazy"/>
       </Link>
       {/* </div> */}
 

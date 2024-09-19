@@ -36,50 +36,50 @@ export default function App() {
         <SwiperSlide>
 
             <Link to="/#event-for-swipe">
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-1.jpg" loading='lazy'/>
           <h4>App development</h4>
           </Link>
          
         </SwiperSlide>
         <SwiperSlide>
             <Link to="/">
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-2.jpg" loading="lazy"/>
           <h4>Soccer match</h4>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
         <Link to="/">
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-3.jpg" loading="lazy"/>
           <h4>DJ</h4>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
         <Link to="/">
-          <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-4.jpg" loading="lazy"/>
           <h4>Local Sevens</h4>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
         <Link to="/">
-          <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-5.jpg" loading="lazy"/>
           <h4> Oodo road show</h4>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
         <Link to="/">
-          <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-6.jpg" loading="lazy"/>
           <h4></h4>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
         <Link to="/">
-          <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-7.jpg" loading="lazy"/>
           <h4></h4>
           </Link>
         </SwiperSlide>
         <SwiperSlide>
         <Link to="/">
-          <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
+          <img src="https://swiperjs.com/demos/images/nature-8.jpg" loading="lazy"/>
           <h4></h4>
           </Link>
         </SwiperSlide>

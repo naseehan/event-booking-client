@@ -131,7 +131,7 @@ const DemoCarousel = () => {
                 className="event4 common-event" id="event-for-swipe"
                 onClick={(e) => handleClick(e, data)}
               >
-                <img src={img} alt="Slide 3" id="image" />
+                <img src={img} alt="Slide 3" id="image" loading="lazy"/>
                 <div className="text-overlay">
                   <p>{data.price} ₹</p>
                   <h4>{data.place}</h4>

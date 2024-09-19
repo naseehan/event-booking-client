@@ -7,7 +7,6 @@ import ScrollButton from "../components/ScrollButton";
 const User = () => {
   // const adminEmail = useSelector((state) => state.adminEmail);
   const navigate = useNavigate();
-  const response = localStorage.getItem("userstokentoken");
   const email = localStorage.getItem("email");
   const [adminEmail, setAdminEmail] = useState(email);
   return (
@@ -29,6 +28,7 @@ const User = () => {
                     alt="Avatar"
                     className="img-fluid my-5"
                     style={{ width: "80px" }}
+                    loading="lazy"
                   />
                 </div>
                 <div className="col-md-8">
