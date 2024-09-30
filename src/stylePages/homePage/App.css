@@ -113,6 +113,10 @@
   box-shadow: none;
   transform: translateY(0);
 }
+/* loading section */
+.loading{
+  margin-top: 1rem;
+}
 
 /* slider section */
 

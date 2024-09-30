@@ -3,9 +3,13 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+import { leapfrog } from "ldrs";
+
+leapfrog.register();
+
 const SearchSection = () => {
   const [category, setCategory] = useState("");
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState();
   const [searchResults, setSearchResults] = useState(false);
   const [fetchedEvents, setFetchedEvents] = useState();
   const [overlay, setOverlay] = useState(false);
@@ -16,19 +20,22 @@ const SearchSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/searchedEvents`, {
-        params: {
-          category: category, // Pass category as a query parameter
-        },
-      });
+      const response = await axios.get(
+        `${process.env.REACT_APP_BASE_URL}/searchedEvents`,
+        {
+          params: {
+            category: category, // Pass category as a query parameter
+          },
+        }
+      );
       setFetchedEvents(response.data);
       setSearchResults(!searchResults);
       setOverlay(true);
-      setLoading(false)
+      setLoading(false);
     } catch (error) {
-      setLoading(true)
+      setLoading(true);
       console.error("Error fetching events:", error);
     }
   };
@@ -106,32 +113,34 @@ const SearchSection = () => {
           </button>
         </div>
       </form>
-      
-      {loading ? <p>Loading...</p> : (
+
+      {loading ? (
+        // Default values shown
+        <div className="loading">
+        <l-leapfrog size="40" speed="2.5" color="black"></l-leapfrog>
+        </div>
+      ) : (
         <>
-        {searchResults && (
-          
-          
+          {searchResults && (
             <div className="search-results">
               {fetchedEvents.length == 0 && "No events found"}
               {fetchedEvents.map((data) => (
-                  <ul onClick={(e) => handleClick(e, data)}>
-                    <li>
-                      <p>Name : {data.name}</p>
-                    </li>
-                    <li>
-                      <p>Place:{data.place} </p>
-                    </li>
-                    <li>
-                      <p>Price:{data.price} </p>
-                    </li>
-                  </ul>
+                <ul onClick={(e) => handleClick(e, data)}>
+                  <li>
+                    <p>Name : {data.name}</p>
+                  </li>
+                  <li>
+                    <p>Place:{data.place} </p>
+                  </li>
+                  <li>
+                    <p>Price:{data.price} </p>
+                  </li>
+                </ul>
               ))}
             </div>
-       
+          )}
+        </>
       )}
-      </>
-    )}
     </div>
   );
 };
