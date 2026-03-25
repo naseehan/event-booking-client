@@ -70,7 +70,6 @@ const handlePageNumberClick = (pageNumber) => {
   const handleSortChange = (e) => {
     setSortValue(e.target.value);
   };
-console.log(currentPage);
 
   // sorting by price
   const sortedEvents = [...events].sort((a, b) => {
