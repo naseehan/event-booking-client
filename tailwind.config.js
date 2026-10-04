@@ -1,19 +1,29 @@
-// /** @type {import('tailwindcss').Config} */
-// module.exports = {
-//   content: [
-//     "./src/**/*.{js,jsx,ts,tsx}",
-//   ],
-//   theme: {
-//     extend: {},
-//   },
-//   plugins: [],
-// }
-
-// /** @type {import('tailwindcss').Config} */
-// export const content = [
-//   "./src/**/*.{js,jsx,ts,tsx}",
-// ];
-// export const theme = {
-//   extend: {},
-// };
-// export const plugins = [];
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./public/index.html",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        primary: {
+          50: '#f0fdf4',
+          100: '#dcfce7',
+          500: '#22c55e',
+          600: '#16a34a',
+          700: '#15803d',
+        },
+        brand: {
+          dark: '#0f172a',
+          card: '#1e293b',
+          accent: '#3b82f6',
+        }
+      },
+      fontFamily: {
+        sans: ['Rubik', 'Roboto', 'sans-serif'],
+      }
+    },
+  },
+  plugins: [],
+};

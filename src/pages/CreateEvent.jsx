@@ -1,202 +1,222 @@
 import React, { useState } from "react";
-import "../stylePages/createEvent/App.css";
-import axios from "axios";
-import Success from "../components/Success";
+import { Link, useNavigate } from "react-router-dom";
+import { eventApi } from "../api/event.api";
+
+const CATEGORIES = ["Music", "Festivals", "Sports", "Conference", "Theater", "Workshop", "Other"];
 
 const CreateEvent = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [place, setPlace] = useState("");
-  const [date, setDate] = useState("");
-  const [description, setDescription] = useState("");
-  const [time, setTime] = useState("");
-  const [venue, setVenue] = useState("");
-  const [category, setCategory] =  useState("");
+  const [formData, setFormData] = useState({
+    name: "",
+    category: "Music",
+    place: "",
+    venue: "",
+    price: "",
+    date: "",
+    time: "",
+    description: "",
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const navigate = useNavigate();
 
-  const [dateError, setDateError] = useState(false)
-
-
-  const handleName = (e) => {
-    setName(e.target.value);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
-
-  const handlePlace = (e) => {
-    setPlace(e.target.value);
-  };
-  const handlePrice = (e) => {
-      setPrice(e.target.value);
-  };
-  const handleDate = (e) => {
-    const selectedDate = new Date(e.target.value);
-    const currentDate = new Date();
-    // if the user selected date is in the future
-    if(selectedDate<currentDate){
-        setDateError(true);
-    }else{
-      setDate(e.target.value);
-      setDateError(false)
-    }
-  };
-  const handleTime = (e) => {
-    setTime(e.target.value);
-  };
-  const handleVenue = (e) => {
-    setVenue(e.target.value);
-  };
-  const handleDescription = (e) => {
-    setDescription(e.target.value);
-  };
-  const handleCategory = (e) => {
-    setCategory(e.target.value);
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const userId = localStorage.getItem("userId");
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/createEvent`, {
-        name,
-        place,
-        price,
-        date,
-        description,
-        venue,
-        time,
-        category,
-        createdBy: userId, // Include userId in the request body
-      });
+    setLoading(true);
+    setError(null);
 
-      if (response.status === 201) {
-        setSuccess(true);
-        setTimeout(() => {
-          setSuccess(false);
-        }, 2000);
-      }
-      setName("");
-      setPlace("");
-      setPrice("");
-      setDate("");
-      setTime("");
-      setVenue("");
-      setDescription("");
-      setCategory("");
-    } catch (error) {
-      console.error(error);
+    try {
+      await eventApi.createEvent(formData);
+      setSuccess(true);
+      setTimeout(() => {
+        navigate("/user");
+      }, 1500);
+    } catch (err) {
+      setError(err.message || "Failed to create event. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <>
-    <div className="create-container">
-      <div className="page-overlay"></div>
-      <div className="create-event-heading">
-        <h3>Create Event</h3>
-      </div>
+    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-2xl mx-auto bg-white p-8 sm:p-10 rounded-2xl shadow-sm border border-slate-200">
+        <div className="flex items-center justify-between pb-6 border-b border-slate-100 mb-6">
+          <div>
+            <h1 className="text-2xl font-extrabold text-slate-900">Create New Event</h1>
+            <p className="text-xs text-slate-500 mt-1">Publish an event to the public listings.</p>
+          </div>
+          <Link
+            to="/user"
+            className="text-xs font-semibold text-slate-500 hover:text-slate-800 flex items-center gap-1"
+          >
+            <i className="fa-solid fa-arrow-left"></i> Back to Dashboard
+          </Link>
+        </div>
 
-      {/* for success message after submitting */}
-      {success && ( 
-         <Success /> 
-        )}  
-       {/* // <div className="success-message">
-        //   <p>Event created successfully</p>
-        // </div>  */}
-      
+        {error && (
+          <div className="mb-6 p-4 rounded-xl bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700 flex items-center gap-2">
+            <i className="fa-solid fa-circle-exclamation text-rose-500"></i>
+            <span>{error}</span>
+          </div>
+        )}
 
-      <div className="active-task-details">
-        <form action="" onSubmit={handleSubmit}>
-          <label htmlFor="name">Event Name</label>
-          <input
-            type="text"
-            maxLength={15}
-            name="name"
-            id="name"
-            value={name}
-            onChange={handleName}
-            required
-          />
+        {success && (
+          <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-700 flex items-center gap-2">
+            <i className="fa-solid fa-circle-check text-emerald-600"></i>
+            <span>Event published successfully! Redirecting...</span>
+          </div>
+        )}
 
-          
-          <label htmlFor="category">Event Category</label>
-          <select name="category" id="category" value={category} required onChange={handleCategory}>
-            <option value="">Select Category</option>
-            <option value="Arts & Theatre">Arts & Theatre</option>
-            <option value="Concerts">Concerts</option>
-            <option value="Family">Family</option>
-            <option value="Festivals">Festivals</option>
-            <option value="Conference">Conference</option>
-          </select>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              Event Title *
+            </label>
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="e.g. Neon City Music Festival"
+              className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            />
+          </div>
 
-          <label htmlFor="place">Event Place</label>
-          <input
-            type="text"
-            maxLength={20}
-            name="place"
-            id="place"
-            value={place}
-            onChange={handlePlace}
-            required
-          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Category *
+              </label>
+              <select
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-white"
+              >
+                {CATEGORIES.map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </select>
+            </div>
 
-          <label htmlFor="date">Date</label>
-          <input
-            type="date"
-            name="date"
-            id="date"
-            value={date}
-            onChange={handleDate}
-            required
-          />
-{dateError ? (<p className="date-error">Please select a valid future date</p>) : null}
-          <label htmlFor="price">Price</label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            value={price}
-            onChange={handlePrice}
-            maxLength={5}
-            required
-          />
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Ticket Price (INR) *
+              </label>
+              <input
+                type="number"
+                name="price"
+                required
+                min="0"
+                value={formData.price}
+                onChange={handleChange}
+                placeholder="e.g. 499"
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+          </div>
 
-          <label htmlFor="time">Time</label>
-          <input
-            type="time"
-            name="time"
-            id="time"
-            value={time}
-            onChange={handleTime}
-            required
-          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                City / Region *
+              </label>
+              <input
+                type="text"
+                name="place"
+                required
+                value={formData.place}
+                onChange={handleChange}
+                placeholder="e.g. Kochi"
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
 
-          <label htmlFor="venue">Venue</label>
-          <input
-            type="string"
-            name="venue"
-            id="venue"
-            value={venue}
-            onChange={handleVenue}
-            maxLength={20}
-            required
-          />
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Venue Details *
+              </label>
+              <input
+                type="text"
+                name="venue"
+                required
+                value={formData.venue}
+                onChange={handleChange}
+                placeholder="e.g. Grand Convention Center"
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+          </div>
 
-          <label htmlFor="description">Description</label>
-          <textarea
-            name="description"
-            value={description}
-            onChange={handleDescription}
-            required
-            id="description"
-            cols="30"
-            rows="10"
-          ></textarea>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Date *
+              </label>
+              <input
+                type="date"
+                name="date"
+                required
+                value={formData.date}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
 
-          <button type="submit" className={dateError ? "not-allowed": ''} disabled={dateError}>Submit</button>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Time *
+              </label>
+              <input
+                type="time"
+                name="time"
+                required
+                value={formData.time}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+              Description
+            </label>
+            <textarea
+              name="description"
+              rows="3"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Tell guests what they can expect at your event..."
+              className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            {loading ? (
+              <>
+                <i className="fa-solid fa-spinner animate-spin"></i>
+                <span>Publishing Event...</span>
+              </>
+            ) : (
+              <span>Publish Event</span>
+            )}
+          </button>
         </form>
       </div>
     </div>
-  
-    </>
   );
 };
 

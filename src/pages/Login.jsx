@@ -1,179 +1,129 @@
-import React, { useState } from "react";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBRow,
-  MDBCol,
-  MDBCard,
-  MDBCardBody,
-  MDBInput,
-  MDBIcon,
-} from "mdb-react-ui-kit";
-import "../stylePages/login/App.css";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-// import { useDispatch } from 'react-redux';
-// import { setAdminEmail } from '../redux/actions';
-// import { useHistory } from 'react-router-dom';
+import { authApi } from "../api/auth.api";
+import { UserContext } from "../context/userContext";
 
-const Login = ({ setAdminEmail }) => {
-  // const history = useHistory();
-  // const dispatch = useDispatch();
-
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false)
+  const { login } = useContext(UserContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
+    setError(null);
+
     try {
-      const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, {
-        email,
-        password,
+      const data = await authApi.login(email, password);
+
+      // Save user session
+      login({
+        token: data.token,
+        email: data.user?.email || data.result?.email || email,
+        userId: data.user?.id || data.result?.existingUser?._id,
       });
-      // const adminEmail = response.data.result.existingUser.email;
 
-      setAdminEmail(response.data.result.existingUser.email);
-      if (response.status === 201) {
-        localStorage.setItem("userstokentoken", response.data.result.token);
-        localStorage.setItem("email", response.data.result.existingUser.email);
-        localStorage.setItem("userId", response.data.result.existingUser._id);
-
-        // Dispatch the action to set the adminEmail in Redux
-        // dispatch(setAdminEmail(adminEmail));
-        setLoading(false)
-        navigate("/");
-        window.location.reload();
-        // history.push('/');
-      }
-    } catch (error) {
-      if (error.response) {
-        setLoading(false)
-        if (error.response.status === 300) {
-          setError("Invalid email or Password");
-        } else if (error.response.status === 400) {
-          setError("User doesnt exist");
-        } else {
-          setError("An error occured please try again later.");
-        }
-      } else {
-        setLoading(false)
-        // Request was made but no response was received
-        setError("An error occurred. Please check your internet connection.");
-      }
-      setTimeout(() => {
-        setError(null);
-      }, 4000);
+      navigate("/");
+    } catch (err) {
+      setError(err.message || "Invalid credentials. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <MDBContainer fluid>
-      {/* loading animation */}
-       {loading ? (
-        <div class="login-loader">
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
-          <div class="circle"></div>
+    <div className="min-h-[80vh] flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8 bg-white p-8 sm:p-10 rounded-2xl shadow-lg border border-slate-200">
+        <div className="text-center">
+          <div className="inline-flex p-3 rounded-full bg-emerald-50 text-emerald-600 mb-2">
+            <i className="fa-solid fa-ticket text-2xl"></i>
+          </div>
+          <h2 className="text-2xl font-extrabold text-slate-900 tracking-tight">Welcome Back</h2>
+          <p className="mt-1 text-sm text-slate-500">
+            Sign in to access your bookings and manage events.
+          </p>
         </div>
-      ) : null}
 
-      <form action="" onSubmit={handleSubmit}>
-        <MDBRow className="d-flex justify-content-center align-items-center h-100">
-          <MDBCol col="12">
-            <MDBCard
-              className="bg-dark text-white my-5 mx-auto"
-              style={{ borderRadius: "1rem", maxWidth: "400px" }}
-            >
-              <MDBCardBody className="p-5 d-flex flex-column align-items-center mx-auto w-100">
-                <h2 className="fw-bold mb-2 text-uppercase">Login</h2>
-                <p className="text-white-50 mb-3">
-                  Please enter your login and password!
-                </p>
-                {error && (
-                  <p className="text-red-50 mb-3" style={{ color: "red" }}>
-                    {error}
-                  </p>
-                )}
-                <MDBInput
-                  wrapperClass="mb-4 mx-5 w-100"
-                  className="text-white"
-                  labelClass="text-white"
-                  label="Email address"
-                  id="formControlLg"
-                  type="email"
-                  size="lg"
-                  required
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                  // maxLength={25}
-                  
-                />
-                <MDBInput
-                  wrapperClass="mb-4 mx-5 w-100"
-                  className="text-white"
-                  labelClass="text-white"
-                  label="Password"
-                  id="formControlLg"
-                  type="password"
-                  size="lg"
-                  required
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                  // maxLength={15}
-                 
-                />
+        {error && (
+          <div className="bg-rose-50 border border-rose-200 rounded-xl p-3.5 text-xs font-semibold text-rose-700 flex items-center gap-2">
+            <i className="fa-solid fa-triangle-exclamation text-rose-500 text-sm"></i>
+            <span>{error}</span>
+          </div>
+        )}
 
-                {/* <p className="small mb-3 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> */}
-                <MDBBtn
-                  outline
-                  className="mx-2 px-5"
-                  color="white"
-                  size="lg"
-                  type="submit"
-                >
-                  Login
-                </MDBBtn>
+        <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+          <div className="space-y-1">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+              Email Address
+            </label>
+            <div className="relative">
+              <i className="fa-solid fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                className="w-full pl-9 pr-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800"
+              />
+            </div>
+          </div>
 
-                {/* <div className='d-flex flex-row mt-3 mb-5'>
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='facebook-f' size="lg"/>
-                </MDBBtn>
+          <div className="space-y-1">
+            <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+              Password
+            </label>
+            <div className="relative">
+              <i className="fa-solid fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="w-full pl-9 pr-10 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500 text-slate-800"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-sm"
+              >
+                <i className={`fa-solid ${showPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
+              </button>
+            </div>
+          </div>
 
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='twitter' size="lg"/>
-                </MDBBtn>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+          >
+            {loading ? (
+              <>
+                <i className="fa-solid fa-spinner animate-spin"></i>
+                <span>Signing in...</span>
+              </>
+            ) : (
+              <span>Sign In</span>
+            )}
+          </button>
+        </form>
 
-                <MDBBtn tag='a' color='none' className='m-3' style={{ color: 'white' }}>
-                  <MDBIcon fab icon='google' size="lg"/>
-                </MDBBtn>
-              </div> */}
-
-                <div>
-                  <p className="mb-0">
-                    Don't have an account ? 
-                    {/* <a href="/signup" className="text-white-50 fw-bold">
-                      Sign Up
-                    </a> */}
-                    <Link to="/signup" className="text-white-50 fw-bold ml-1">
-                 Sign up
-              </Link>
-                  </p>
-                </div>
-              </MDBCardBody>
-            </MDBCard>
-          </MDBCol>
-        </MDBRow>
-      </form>
-    </MDBContainer>
+        <div className="text-center pt-4 border-t border-slate-100">
+          <p className="text-xs text-slate-600">
+            Don't have an account?{" "}
+            <Link to="/signup" className="font-bold text-emerald-600 hover:text-emerald-700 ml-1">
+              Create an account
+            </Link>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 

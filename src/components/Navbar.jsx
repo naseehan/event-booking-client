@@ -1,147 +1,209 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import logo from "../assets/navbar/ticket-logo.png";
-import "../stylePages/navbar/App.css";
+import { UserContext } from "../context/userContext";
+import { useCart } from "../context/cartContext";
 
 const Navbar = () => {
-  const [token, setToken] = useState();
+  const { user, logout } = useContext(UserContext);
+  const { cartCount } = useCart();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("userstokentoken");
-    setToken(storedToken);
-  }, []);
-
-  const handleClick = (e) => {
+  const handleLogout = (e) => {
     e.preventDefault();
-
-    // Use the window.confirm() method to show a confirmation dialog
-    const confirmed = window.confirm("Are you sure you want to log out?");
-
-    if (confirmed) {
-      localStorage.removeItem("userstokentoken");
-      localStorage.removeItem("email");
-      localStorage.removeItem("userId");
-      setToken(null);
-      navigate("/login");
-    } else {
-    }
-  };
-
-  const handleUser = (e) => {
-    e.preventDefault();
-
-    if (token) {
-      navigate("/user");
-    } else {
+    if (window.confirm("Are you sure you want to log out?")) {
+      logout();
       navigate("/login");
     }
   };
+
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-     
-      <Link to="/">
-        <img src={logo} alt="logo" className="navbar-brand " loading="lazy"/>
-      </Link>
-      {/* </div> */}
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo & Brand */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <img src={logo} alt="Noble Events Logo" className="h-9 w-auto object-contain transition-transform group-hover:scale-105" />
+            <span className="font-extrabold text-xl tracking-tight text-slate-800">
+              Noble<span className="text-emerald-600">Events</span>
+            </span>
+          </Link>
 
-      <button
-        className="navbar-toggler menu__icon"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-
-      <div
-        className="collapse navbar-collapse div-own-styles"
-        id="navbarSupportedContent"
-      >
-        <ul className="navbar-nav  navbar-own-styles">
-          <li className="nav-item active">
-           
+          {/* Desktop Nav Links */}
+          <div className="hidden md:flex items-center space-x-6">
             <Link
               to="/"
-              className="nav-link"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
+              className={`text-sm font-medium transition-colors ${
+                isActive("/") ? "text-emerald-600 font-semibold" : "text-slate-600 hover:text-emerald-600"
+              }`}
             >
               Home
             </Link>
-          </li>
-          <li className="nav-item active">
             <Link
               to="/events"
-              className="nav-link"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
+              className={`text-sm font-medium transition-colors ${
+                isActive("/events") ? "text-emerald-600 font-semibold" : "text-slate-600 hover:text-emerald-600"
+              }`}
             >
-              Events
+              Browse Events
             </Link>
-          </li>
-          <li className="nav-item active">
             <Link
               to="/contact"
-              className="nav-link"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
+              className={`text-sm font-medium transition-colors ${
+                isActive("/contact") ? "text-emerald-600 font-semibold" : "text-slate-600 hover:text-emerald-600"
+              }`}
             >
-              Contact US
+              Contact Us
             </Link>
-          </li>
-          <li className="nav-item active">
-            <Link
-              to="/user"
-              onClick={handleUser}
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-            >
-              <i className="fa-solid fa-user"></i>
-            </Link>
-          </li>
-          {token ? (
-            <li className="nav-item active">
+
+            {/* Cart Link with Badge */}
+            {user && user.token && (
               <Link
                 to="/cart2"
-                data-toggle="collapse"
-                data-target="#navbarSupportedContent"
+                className="relative p-2 text-slate-600 hover:text-emerald-600 transition-colors"
+                title="Your Cart"
               >
-                <i className="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping text-lg"></i>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center animate-pulse">
+                    {cartCount}
+                  </span>
+                )}
               </Link>
-            </li>
-          ) : null}
+            )}
 
-          {!token ? (
-            <li className="nav-item active">
-              <Link to="/signup" className="nav-link">
+            {/* Auth / Profile Actions */}
+            {user && user.token ? (
+              <div className="flex items-center space-x-3 ml-2">
+                <Link
+                  to="/user"
+                  className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium border transition-colors ${
+                    isActive("/user")
+                      ? "border-emerald-500 bg-emerald-50 text-emerald-700"
+                      : "border-slate-200 text-slate-700 hover:bg-slate-50"
+                  }`}
+                  title={user.email}
+                >
+                  <i className="fa-solid fa-circle-user text-emerald-600"></i>
+                  <span className="max-w-[120px] truncate">{user.email ? user.email.split('@')[0] : "Account"}</span>
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium text-rose-600 hover:bg-rose-50 transition-colors border border-transparent hover:border-rose-100"
+                >
+                  <i className="fa-solid fa-arrow-right-from-bracket text-xs"></i>
+                  <span>Logout</span>
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-3">
+                <Link
+                  to="/login"
+                  className="text-sm font-semibold text-slate-700 hover:text-emerald-600 px-3 py-1.5 rounded-lg transition-colors"
+                >
+                  Log in
+                </Link>
+                <Link
+                  to="/signup"
+                  className="text-sm font-semibold text-white bg-emerald-600 hover:bg-emerald-700 px-4 py-1.5 rounded-lg shadow-sm transition-all shadow-emerald-200 hover:shadow-md"
+                >
+                  Sign up
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center gap-3">
+            {user && user.token && (
+              <Link to="/cart2" className="relative p-2 text-slate-600">
+                <i className="fa-solid fa-cart-shopping text-lg"></i>
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-emerald-600 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </Link>
+            )}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
+              aria-label="Toggle menu"
+            >
+              <i className={`fa-solid ${isMobileMenuOpen ? "fa-xmark" : "fa-bars"} text-xl`}></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Dropdown */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden border-t border-slate-200 bg-white px-4 pt-2 pb-4 space-y-2">
+          <Link
+            to="/"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50"
+          >
+            Home
+          </Link>
+          <Link
+            to="/events"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50"
+          >
+            Browse Events
+          </Link>
+          <Link
+            to="/contact"
+            onClick={() => setIsMobileMenuOpen(false)}
+            className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:bg-slate-50"
+          >
+            Contact Us
+          </Link>
+
+          {user && user.token ? (
+            <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
+              <Link
+                to="/user"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2 rounded-md text-base font-medium text-emerald-700 bg-emerald-50"
+              >
+                Dashboard ({user.email})
+              </Link>
+              <button
+                onClick={(e) => {
+                  setIsMobileMenuOpen(false);
+                  handleLogout(e);
+                }}
+                className="w-full text-left px-3 py-2 rounded-md text-base font-medium text-rose-600 hover:bg-rose-50"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
+              <Link
+                to="/login"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2 text-center rounded-md font-medium text-slate-700 bg-slate-100"
+              >
+                Log in
+              </Link>
+              <Link
+                to="/signup"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block px-3 py-2 text-center rounded-md font-medium text-white bg-emerald-600"
+              >
                 Sign up
               </Link>
-            </li>
-          ) : (
-            <li className="nav-item active">
-              <Link to="/login" onClick={handleClick} className="nav-link">
-                {/* logout button */}
-                <button className="Btn">
-                  <div className="sign">
-                    <svg viewBox="0 0 512 512">
-                      <path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
-                    </svg>
-                  </div>
-
-                  <div className="text">Logout</div>
-                </button>
-              </Link>
-            </li>
+            </div>
           )}
-         
-        </ul>
-      
-      </div>
+        </div>
+      )}
     </nav>
   );
 };

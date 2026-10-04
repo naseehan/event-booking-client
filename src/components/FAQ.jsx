@@ -1,99 +1,71 @@
 import React, { useState } from "react";
-import "../stylePages/faq/App.css";
+
+const faqData = [
+  {
+    q: "How do I book tickets for an event?",
+    a: "Browse through our Events catalog, choose your preferred event, click 'Book Ticket' or 'Add to Cart', and proceed through our seamless Stripe checkout. You will receive an instant confirmation upon completion.",
+  },
+  {
+    q: "Which payment methods are accepted?",
+    a: "We support major credit and debit cards (Visa, Mastercard, American Express) powered by Stripe's secure 256-bit encrypted payment gateway.",
+  },
+  {
+    q: "Can I host and sell tickets for my own event?",
+    a: "Yes! Simply sign up or log in, head to your Organizer Dashboard, and click 'Create Event'. You can set ticket pricing, venue details, dates, and track your listings anytime.",
+  },
+  {
+    q: "What happens if an event is postponed or cancelled?",
+    a: "In the event of a cancellation or date change, you will be notified via email and automatically eligible for a full refund through the original payment method.",
+  },
+];
 
 function FAQ() {
-  const [answer, setAnswer] = useState(true);
+  const [openIndex, setOpenIndex] = useState(0);
 
-  const [secondAnswer, setSecondAnswer] = useState(false);
-
-  const [thirdAnswer, setThirdAnswer] = useState(false);
-
-  const handleAnswer = () => {
-    setAnswer(!answer);
-    setSecondAnswer(false);
-    setThirdAnswer(false);
-  };
-  const handleSecondAnswer = () => {
-    setSecondAnswer(!secondAnswer);
-    setAnswer(false);
-    setThirdAnswer(false);
-  };
-  const handleThirdAnswer = () => {
-    setThirdAnswer(!thirdAnswer);
-    setSecondAnswer(false);
-    setAnswer(false);
+  const toggleFAQ = (index) => {
+    setOpenIndex(openIndex === index ? -1 : index);
   };
 
   return (
-    <section className="faq-section">
-      <div className="container">
-        <div className="faq-heading headings-car">
-          <h4>FAQ</h4>
-          <h1>Frequently Asked Questions</h1>
-          <p>
-            Frequently Asked Questions About Event Booking Process on Our
-            Website: Answers to Common Concerns and Inquiries.
-          </p>
-        </div>
-        <div className="faq-questions">
-          <div className="single-question">
+    <section className="py-12 max-w-4xl mx-auto px-4">
+      <div className="text-center space-y-2 mb-10">
+        <span className="text-emerald-600 font-bold text-xs uppercase tracking-widest">Help Center</span>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+          Frequently Asked Questions
+        </h2>
+        <p className="text-sm text-slate-500">
+          Everything you need to know about booking passes and organizing events.
+        </p>
+      </div>
+
+      <div className="space-y-4">
+        {faqData.map((item, index) => {
+          const isOpen = openIndex === index;
+          return (
             <div
-              className={`question ${answer ? "active-question" : ""}`}
-              onClick={handleAnswer}
+              key={index}
+              className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm transition-all"
             >
-              <p>1. How can I book tickets for an event?</p>
-              <i className="fa-sharp fa-solid fa-angle-down"></i>
+              <button
+                onClick={() => toggleFAQ(index)}
+                className="w-full py-4 px-6 text-left flex items-center justify-between gap-4 font-semibold text-slate-900 text-sm hover:text-emerald-600 focus:outline-none transition-colors"
+              >
+                <span>{item.q}</span>
+                <i
+                  className={`fa-solid fa-chevron-down text-xs transition-transform duration-200 ${
+                    isOpen ? "rotate-180 text-emerald-600" : "text-slate-400"
+                  }`}
+                ></i>
+              </button>
+
+              {isOpen && (
+                <div className="px-6 pb-5 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                  {item.a}
+                </div>
+              )}
             </div>
-            <div className={`answer ${answer ? "active-answer" : ""}`}>
-              <p>
-                Booking tickets for an event is easy! Simply follow these steps:
-                Navigate to the Events section on our website. Browse through
-                the available events and select the one you're interested in.
-                Choose the number of tickets you want to purchase. Click on the
-                "Book Now" button and follow the prompts to complete the booking
-                process.
-              </p>
-            </div>
-          </div>
-          <div className="single-question">
-            <div
-              onClick={handleSecondAnswer}
-              className={`question ${secondAnswer ? "active-question" : ""}`}
-            >
-              <p>How the payments works? </p>
-              <i className="fa-sharp fa-solid fa-angle-down"></i>
-            </div>
-            <div className={`answer ${secondAnswer ? "active-answer" : ""}`}>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                bibendum venenatis neque eget tristique. Sed at porta felis.
-                Duis vitae malesuada lacus. Duis lobortis risus gravida leo
-                pellentesque bibendum. Donec accumsan justo a ante dapibus, ac
-                feugiat sapien efficitur. Quisque ultricies tortor bibendum
-                fermentum mollis.
-              </p>
-            </div>
-          </div>
-          <div className="single-question">
-            <div
-              onClick={handleThirdAnswer}
-              className={`question ${thirdAnswer ? "active-question" : ""}`}
-            >
-              <p>How and when do I get paid after selling my tickets? </p>
-              <i className="fa-sharp fa-solid fa-angle-down"></i>
-            </div>
-            <div className={`answer ${thirdAnswer ? "active-answer" : ""}`}>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                bibendum venenatis neque eget tristique. Sed at porta felis.
-                Duis vitae malesuada lacus. Duis lobortis risus gravida leo
-                pellentesque bibendum. Donec accumsan justo a ante dapibus, ac
-                feugiat sapien efficitur. Quisque ultricies tortor bibendum
-                fermentum mollis.
-              </p>
-            </div>
-          </div>
-        </div>
+          );
+        })}
       </div>
     </section>
   );

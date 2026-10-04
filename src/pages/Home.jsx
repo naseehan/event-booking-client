@@ -1,34 +1,22 @@
-import React, { useEffect, useState } from 'react'
-import HeroSection from '../components/homePage/HeroSection'
-import "../stylePages/homePage/App.css"
-import DemoCarousel from '../components/homePage/DemoCarousel'
-import Clients from '../components/homePage/Clients'
-import ScrollButton from '../components/ScrollButton'
-import Features from '../components/Features'
-import FAQ from '../components/FAQ'
-// import Blog from '../components/homePage/blog/Blog'
+import React from "react";
+import HeroSection from "../components/homePage/HeroSection";
+import DemoCarousel from "../components/homePage/DemoCarousel";
+import Clients from "../components/homePage/Clients";
+import Features from "../components/Features";
+import FAQ from "../components/FAQ";
+import ScrollButton from "../components/ScrollButton";
 
 const Home = () => {
-
-  const [token, setToken] = useState();
-
-  useEffect(() => {
-
-    const storedToken  = localStorage.getItem("userstokentoken");
-setToken(storedToken );
-  },[])
-
   return (
-    <div className='container home-section'>
+    <div className="space-y-12 pb-16">
       <HeroSection />
       <DemoCarousel />
-      <Clients />
       <Features />
+      <Clients />
       <FAQ />
       <ScrollButton />
-      {/* <Blog /> */}
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

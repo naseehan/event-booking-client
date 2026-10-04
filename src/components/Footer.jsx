@@ -1,263 +1,117 @@
-import React, { useEffect, useState } from "react";
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBIcon,
-  MDBInput,
-  MDBCol,
-  MDBRow,
-  MDBBtn,
-} from "mdb-react-ui-kit";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function App() {
-  const [token, setToken] = useState();
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const storedToken = localStorage.getItem("userstokentoken");
-    setToken(storedToken);
-  }, []);
-
-  const handleUser = (e) => {
-    e.preventDefault();
-
-    if (token) {
-      navigate("/user");
-    } else {
-      navigate("/login");
-    }
-  };
-
+export default function Footer() {
   return (
-    <MDBFooter className="text-center" color="white" bgColor="dark">
-      <MDBContainer className="p-4">
-        <section className="mb-4">
-          <MDBBtn
-            outline
-            color="light"
-            floating
-            className="m-1"
-            href="https://www.facebook.com/"
-            role="button"
-          >
-            <MDBIcon fab icon="facebook-f" />
-          </MDBBtn>
+    <footer className="bg-slate-900 text-slate-400 text-sm mt-auto border-t border-slate-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+          {/* Brand Info */}
+          <div className="space-y-3">
+            <span className="font-extrabold text-xl text-white tracking-tight">
+              Noble<span className="text-emerald-500">Events</span>
+            </span>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Your premier gateway for memorable concerts, sports tournaments, conferences, and community gatherings.
+            </p>
+          </div>
 
-          <MDBBtn
-            outline
-            color="light"
-            floating
-            className="m-1"
-            href="https://www.twitter.com/"
-            role="button"
-          >
-            <MDBIcon fab icon="twitter" />
-          </MDBBtn>
+          {/* Quick Links */}
+          <div className="space-y-2">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Explore</h4>
+            <ul className="space-y-1.5 text-xs">
+              <li>
+                <Link to="/" className="hover:text-emerald-400 transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to="/events" className="hover:text-emerald-400 transition-colors">
+                  Browse Events
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-emerald-400 transition-colors">
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-          <MDBBtn
-            outline
-            color="light"
-            floating
-            className="m-1"
-            href="https://www.google.com/"
-            role="button"
-          >
-            <MDBIcon fab icon="google" />
-          </MDBBtn>
+          {/* Account */}
+          <div className="space-y-2">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Account</h4>
+            <ul className="space-y-1.5 text-xs">
+              <li>
+                <Link to="/login" className="hover:text-emerald-400 transition-colors">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/signup" className="hover:text-emerald-400 transition-colors">
+                  Sign Up
+                </Link>
+              </li>
+              <li>
+                <Link to="/user" className="hover:text-emerald-400 transition-colors">
+                  Organizer Dashboard
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-          <MDBBtn
-            outline
-            color="light"
-            floating
-            className="m-1"
-            href="https://www.instagram.com/"
-            role="button"
-          >
-            <MDBIcon fab icon="instagram" />
-          </MDBBtn>
+          {/* Social Links */}
+          <div className="space-y-3">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Connect</h4>
+            <div className="flex space-x-3">
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Twitter"
+              >
+                <i className="fa-brands fa-twitter"></i>
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Facebook"
+              >
+                <i className="fa-brands fa-facebook-f"></i>
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Instagram"
+              >
+                <i className="fa-brands fa-instagram"></i>
+              </a>
+              <a
+                href="https://github.com"
+                target="_blank"
+                rel="noreferrer"
+                className="w-8 h-8 rounded-lg bg-slate-800 hover:bg-emerald-600 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="GitHub"
+              >
+                <i className="fa-brands fa-github"></i>
+              </a>
+            </div>
+          </div>
+        </div>
 
-          <MDBBtn
-            outline
-            color="light"
-            floating
-            className="m-1"
-            href="https://www.linkedin.com/"
-            role="button"
-          >
-            <MDBIcon fab icon="linkedin-in" />
-          </MDBBtn>
-
-          <MDBBtn
-            outline
-            color="light"
-            floating
-            className="m-1"
-            href="https://www.github.com/"
-            role="button"
-          >
-            <MDBIcon fab icon="github" />
-          </MDBBtn>
-        </section>
-
-        <section className="">
-          <form action="">
-            <MDBRow className="d-flex justify-content-center">
-              <MDBCol size="auto">
-                <p className="pt-2">
-                  <strong>Sign up for my newsletter</strong>
-                </p>
-              </MDBCol>
-
-              <MDBCol md="5" start>
-                <MDBInput
-                  contrast
-                  type="email"
-                  label="Email address"
-                  className="mb-4"
-                />
-              </MDBCol>
-
-              <MDBCol size="auto">
-                <MDBBtn outline color="light" type="submit" className="mb-4">
-                  Subscribe
-                </MDBBtn>
-              </MDBCol>
-            </MDBRow>
-          </form>
-        </section>
-
-        <section className="mb-4">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-            distinctio earum repellat quaerat voluptatibus placeat nam, commodi
-            optio pariatur est quia magnam eum harum corrupti dicta, aliquam
-            sequi voluptate quas.
+        {/* Copyright */}
+        <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+          <p>© {new Date().getFullYear()} Noble Events Platform. All rights reserved.</p>
+          <p className="flex items-center gap-1">
+            Built with modern React, Tailwind CSS, Node.js & MongoDB
           </p>
-        </section>
-
-        <section className="">
-          <MDBRow>
-            <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase">Links</h5>
-
-              <ul className="list-unstyled mb-0">
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 1
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 2
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 3
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 4
-                  </a>
-                </li>
-              </ul>
-            </MDBCol>
-
-            <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase">Links</h5>
-
-              <ul className="list-unstyled mb-0">
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 1
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 2
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 3
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 4
-                  </a>
-                </li>
-              </ul>
-            </MDBCol>
-
-            <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase">Links</h5>
-
-              <ul className="list-unstyled mb-0">
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 1
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 2
-                  </a>
-                </li>
-                <li>
-                  <a href="#!" className="text-white">
-                    Link 3
-                  </a>
-                </li>
-                <li>
-                  <a href="/contact" className="text-white">
-                    Contact US
-                  </a>
-                </li>
-              </ul>
-            </MDBCol>
-
-            <MDBCol lg="3" md="6" className="mb-4 mb-md-0">
-              <h5 className="text-uppercase">Links</h5>
-
-              <ul className="list-unstyled mb-0">
-                <li>
-                  <a href="/" className="text-white">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a href="/events" className="text-white">
-                    Events
-                  </a>
-                </li>
-                <li>
-                  <Link to="/user" onClick={handleUser} className="text-white">
-                    Account
-                  </Link>
-                </li>
-                <li>
-                  <a href="/cart" className="text-white">
-                    Cart
-                  </a>
-                </li>
-              </ul>
-            </MDBCol>
-          </MDBRow>
-        </section>
-      </MDBContainer>
-
-      <div
-        className="text-center p-3"
-        style={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
-      >
-        © 2024 Copyright :
-        <a className="text-white" href="https://noble-events.onrender.com/">
-          nobleevents.com
-        </a>
+        </div>
       </div>
-    </MDBFooter>
+    </footer>
   );
 }

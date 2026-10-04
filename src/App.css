@@ -1,30 +1,6 @@
+/* Clean global resets */
 .App {
-  padding: 1rem 3rem 0;
-  font-family: "Roboto", sans-serif;
-}
-body {
-  background-color: #ebf0fa;
-}
-
-.search-overlay{
-    opacity: 0;
-    display: none;
-    position: fixed;
-    background-color: rgba(0,0,0,.3) !important;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-    z-index: 9999;
-}
-.search-overlay-active{
-  opacity: 1;
+  min-height: 100vh;
   display: flex;
-}
-
-@media only screen and (max-width: 760px) {
-  .App {
-    min-width: 21rem;
-    padding: 1rem;
-  }
+  flex-direction: column;
 }

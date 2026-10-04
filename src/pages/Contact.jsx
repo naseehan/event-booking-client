@@ -1,81 +1,117 @@
-import React, { useState } from 'react';
-import { MDBInput, MDBCheckbox, MDBBtn, MDBTextArea } from 'mdb-react-ui-kit';
-import "../stylePages/contact/App.css"
-// import "../stylePages/contact/bootstrap.min.css"
-// import "../stylePages/contact/animate.css"
-// import "../stylePages/contact/bootstrap"
-// import Swal from 'sweetalert2'
-// // import Swal from 'sweetalert2/dist/sweetalert2.js'
-// import 'sweetalert2/src/sweetalert2.scss'
+import React, { useState } from "react";
+import ScrollButton from "../components/ScrollButton";
+import FAQ from "../components/FAQ";
 
-import ScrollButton from '../components/ScrollButton';
-import FAQ from '../components/FAQ';
 export default function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-const [name , setName] = useState("")
-const [error, setError] = useState(false)
-
-const [email , setEmail] = useState("")
-const [emailError, setEmailError] = useState(false)
-
-const handleName = (e) => {
-  const name = e.target.value;
-  if(!/^[a-z ,.'-]+$/i.test(name)){
-    setError(true)
-  }else{
-    setName(e.target.value);
-    setError(false)
-  }
-}
-
-const handleEmail = (e) => {
-  const email = e.target.value;
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
-    setEmailError(true)
-  }else{
-    setEmail(e.target.value);
-    setEmailError(false)
-  }
-}
-
-const handleSubmit = (e) => {
-  alert("Successfully sent message")
-//    { Swal.fire({
-//   position: "top-end",
-//   icon: "success",
-//   title: "Your work has been saved",
-//   showConfirmButton: false,
-//   timer: 1500
-// })} 
-}
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => {
+      setName("");
+      setEmail("");
+      setSubject("");
+      setMessage("");
+      setSubmitted(false);
+    }, 4000);
+  };
 
   return (
-    <div className="container">
-    <div className="contact-container container">
-    <form id='form' className='text-center mt-5' style={{ width: '100%', maxWidth: '300px' }} onSubmit={handleSubmit}>
-      <h2>Contact us</h2>
+    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-3xl mx-auto space-y-12">
+        <div className="bg-white p-8 sm:p-10 rounded-3xl shadow-sm border border-slate-200">
+          <div className="text-center space-y-2 mb-8">
+            <span className="text-xs font-bold text-emerald-600 uppercase tracking-wider">Get in Touch</span>
+            <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">Contact Us</h1>
+            <p className="text-sm text-slate-500 max-w-md mx-auto">
+              Have questions about booking tickets or organizing an event? Send us a message and our team will get back to you.
+            </p>
+          </div>
 
-      <MDBInput label='Name' v-model='name' wrapperClass='mb-4' onChange={handleName} maxLength={15} required/>
-      <p className={error ? 'error' : 'not-error'}>Please enter a valid name</p>
+          {submitted && (
+            <div className="mb-6 p-4 rounded-xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-700 flex items-center gap-2">
+              <i className="fa-solid fa-circle-check text-emerald-600 text-base"></i>
+              <span>Thank you! Your message has been sent. We'll reply within 24 hours.</span>
+            </div>
+          )}
 
-      <MDBInput type='email' label='Email address' v-model='email' wrapperClass='mb-4' onChange={handleEmail} maxLength={25} required/>
-      <p className={emailError ? 'error' : 'not-error'}>Please enter a valid email</p>
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Your Name *
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  placeholder="John Doe"
+                  className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+              </div>
 
-      <MDBInput label='Subject' v-model='subject' type='text' wrapperClass='mb-4' maxLength={20} required/>
+              <div>
+                <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="you@example.com"
+                  className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                />
+              </div>
+            </div>
 
-      <MDBTextArea wrapperClass='mb-4' label='Message'  required/>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Subject *
+              </label>
+              <input
+                type="text"
+                required
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                placeholder="Ticket inquiry / Partnership / Feedback"
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
 
-      <MDBBtn type='submit' color='primary' block className={`my-4 ${error || emailError ? 'button-disable' : ''}`} disabled={error || emailError}>
-        Send
-      </MDBBtn>
-    </form>
-    <ScrollButton />
-     </div>
+            <div>
+              <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
+                Message *
+              </label>
+              <textarea
+                required
+                rows="4"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Type your message here..."
+                className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              ></textarea>
+            </div>
 
-   
+            <button
+              type="submit"
+              className="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-sm shadow-md transition-all flex items-center justify-center gap-2"
+            >
+              <i className="fa-solid fa-paper-plane"></i>
+              <span>Send Message</span>
+            </button>
+          </form>
+        </div>
 
-    
-    <FAQ />
+        <FAQ />
+        <ScrollButton />
+      </div>
     </div>
   );
 }
